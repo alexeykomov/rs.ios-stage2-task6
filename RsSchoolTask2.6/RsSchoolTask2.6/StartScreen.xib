@@ -7,15 +7,23 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StartScreenViewController">
+            <connections>
+                <outlet property="buttonStart" destination="IcU-w6-qjh" id="4rE-CI-MrN"/>
+                <outlet property="view" destination="iN0-l3-epB" id="LUr-cK-xxv"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IcU-w6-qjh">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IcU-w6-qjh">
                     <rect key="frame" x="179" y="607" width="61" height="36"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="250" id="Pts-Fd-IRr"/>
+                        <constraint firstAttribute="height" constant="55" id="vha-iO-Cxr"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                     <state key="normal" title="START"/>
                 </button>
@@ -35,7 +43,7 @@
                         <constraint firstAttribute="width" constant="70" id="XZm-24-5Yz"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cMs-5j-sNV">
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cMs-5j-sNV" customClass="StartScee">
                     <rect key="frame" x="262" y="254" width="70" height="111"/>
                     <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -43,7 +51,7 @@
                         <constraint firstAttribute="width" constant="70" id="9JD-O9-XxH"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Are you ready?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qcf-vf-GWc">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Are you ready?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qcf-vf-GWc">
                     <rect key="frame" x="126" y="149" width="162" height="32"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                     <nil key="textColor"/>
@@ -52,9 +60,12 @@
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="IcU-w6-qjh" secondAttribute="bottom" constant="100" id="5Mv-cs-4ji"/>
                 <constraint firstItem="7mN-bn-4iV" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="86a-NU-OLE"/>
                 <constraint firstItem="7mN-bn-4iV" firstAttribute="leading" secondItem="ZeO-gw-0Xp" secondAttribute="trailing" constant="20" id="D9R-F3-Ad5"/>
                 <constraint firstItem="Qcf-vf-GWc" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="aBU-jJ-X59"/>
+                <constraint firstItem="Qcf-vf-GWc" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="115" id="hAP-P5-7k9"/>
+                <constraint firstItem="IcU-w6-qjh" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="qyk-h5-mOp"/>
                 <constraint firstItem="cMs-5j-sNV" firstAttribute="leading" secondItem="7mN-bn-4iV" secondAttribute="trailing" constant="20" id="wPh-V1-ReJ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

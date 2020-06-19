@@ -22,11 +22,11 @@
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
     
     UIWindowScene *windowScene = (UIWindowScene*) scene;
-    
-    UIWindow *window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    window.rootViewController = [[StartScreenViewController alloc] init];
-    [window makeKeyAndVisible];
-    window.windowScene = windowScene;
+    NSLog(@"windowScene.coordinateSpace.bounds: %@", NSStringFromCGRect(windowScene.coordinateSpace.bounds));
+    self.window = [[UIWindow alloc] initWithFrame:windowScene.coordinateSpace.bounds];
+    self.window.windowScene = windowScene;
+    self.window.rootViewController = [[StartScreenViewController alloc] initWithNibName:@"StartScreen" bundle:nil];
+    [self.window makeKeyAndVisible];
 }
 
 
