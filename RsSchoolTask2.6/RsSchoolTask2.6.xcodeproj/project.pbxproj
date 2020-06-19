@@ -17,6 +17,8 @@
 		5A630455249C0D2A0045B5E7 /* RsSchoolTask2_6UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A630454249C0D2A0045B5E7 /* RsSchoolTask2_6UITests.m */; };
 		5A630463249C0DD30045B5E7 /* StartScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A630462249C0DD30045B5E7 /* StartScreen.xib */; };
 		5A630465249C119E0045B5E7 /* StartScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A630464249C119E0045B5E7 /* StartScreenViewController.m */; };
+		5A630469249D56C10045B5E7 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A630468249D56C10045B5E7 /* GalleryViewController.m */; };
+		5A63046C249D56E10045B5E7 /* InfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A63046B249D56E10045B5E7 /* InfoController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,10 @@
 		5A630462249C0DD30045B5E7 /* StartScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartScreen.xib; sourceTree = "<group>"; };
 		5A630464249C119E0045B5E7 /* StartScreenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartScreenViewController.m; sourceTree = "<group>"; };
 		5A630466249C11B80045B5E7 /* StartScreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartScreenViewController.h; sourceTree = "<group>"; };
+		5A630467249D56C10045B5E7 /* GalleryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
+		5A630468249D56C10045B5E7 /* GalleryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
+		5A63046A249D56E10045B5E7 /* InfoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoController.h; sourceTree = "<group>"; };
+		5A63046B249D56E10045B5E7 /* InfoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +126,10 @@
 				5A630462249C0DD30045B5E7 /* StartScreen.xib */,
 				5A630464249C119E0045B5E7 /* StartScreenViewController.m */,
 				5A630466249C11B80045B5E7 /* StartScreenViewController.h */,
+				5A630467249D56C10045B5E7 /* GalleryViewController.h */,
+				5A630468249D56C10045B5E7 /* GalleryViewController.m */,
+				5A63046A249D56E10045B5E7 /* InfoController.h */,
+				5A63046B249D56E10045B5E7 /* InfoController.m */,
 			);
 			path = RsSchoolTask2.6;
 			sourceTree = "<group>";
@@ -277,6 +287,8 @@
 				5A630440249C0D2A0045B5E7 /* main.m in Sources */,
 				5A630432249C0D280045B5E7 /* SceneDelegate.m in Sources */,
 				5A630465249C119E0045B5E7 /* StartScreenViewController.m in Sources */,
+				5A63046C249D56E10045B5E7 /* InfoController.m in Sources */,
+				5A630469249D56C10045B5E7 /* GalleryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
