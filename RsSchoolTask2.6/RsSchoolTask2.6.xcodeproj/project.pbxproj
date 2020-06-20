@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A522027249E1E3600B06118 /* Square.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A522026249E1E3600B06118 /* Square.m */; };
+		5A52202A249E215B00B06118 /* ActionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A522029249E215B00B06118 /* ActionButton.m */; };
 		5A63042F249C0D280045B5E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A63042E249C0D280045B5E7 /* AppDelegate.m */; };
 		5A630432249C0D280045B5E7 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A630431249C0D280045B5E7 /* SceneDelegate.m */; };
 		5A630435249C0D280045B5E7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A630434249C0D280045B5E7 /* ViewController.m */; };
@@ -19,6 +21,10 @@
 		5A630465249C119E0045B5E7 /* StartScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A630464249C119E0045B5E7 /* StartScreenViewController.m */; };
 		5A630469249D56C10045B5E7 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A630468249D56C10045B5E7 /* GalleryViewController.m */; };
 		5A63046C249D56E10045B5E7 /* InfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A63046B249D56E10045B5E7 /* InfoController.m */; };
+		5A63046E249D62E30045B5E7 /* Colors.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A63046D249D62E30045B5E7 /* Colors.m */; };
+		5A630473249D69460045B5E7 /* Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A630472249D69460045B5E7 /* Circle.m */; };
+		5A630476249D6F1A0045B5E7 /* Triangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A630475249D6F1A0045B5E7 /* Triangle.m */; };
+		5A630479249D6F430045B5E7 /* ColoredView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A630478249D6F430045B5E7 /* ColoredView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +45,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A522025249E1E3600B06118 /* Square.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Square.h; sourceTree = "<group>"; };
+		5A522026249E1E3600B06118 /* Square.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Square.m; sourceTree = "<group>"; };
+		5A522028249E215B00B06118 /* ActionButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionButton.h; sourceTree = "<group>"; };
+		5A522029249E215B00B06118 /* ActionButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActionButton.m; sourceTree = "<group>"; };
 		5A63042A249C0D280045B5E7 /* RsSchoolTask2.6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RsSchoolTask2.6.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A63042D249C0D280045B5E7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5A63042E249C0D280045B5E7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -63,6 +73,14 @@
 		5A630468249D56C10045B5E7 /* GalleryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
 		5A63046A249D56E10045B5E7 /* InfoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoController.h; sourceTree = "<group>"; };
 		5A63046B249D56E10045B5E7 /* InfoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoController.m; sourceTree = "<group>"; };
+		5A63046D249D62E30045B5E7 /* Colors.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Colors.m; sourceTree = "<group>"; };
+		5A63046F249D64E10045B5E7 /* Colors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Colors.h; sourceTree = "<group>"; };
+		5A630471249D69460045B5E7 /* Circle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Circle.h; sourceTree = "<group>"; };
+		5A630472249D69460045B5E7 /* Circle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Circle.m; sourceTree = "<group>"; };
+		5A630474249D6F1A0045B5E7 /* Triangle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Triangle.h; sourceTree = "<group>"; };
+		5A630475249D6F1A0045B5E7 /* Triangle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Triangle.m; sourceTree = "<group>"; };
+		5A630477249D6F430045B5E7 /* ColoredView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColoredView.h; sourceTree = "<group>"; };
+		5A630478249D6F430045B5E7 /* ColoredView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColoredView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,12 +142,15 @@
 				5A63043E249C0D2A0045B5E7 /* Info.plist */,
 				5A63043F249C0D2A0045B5E7 /* main.m */,
 				5A630462249C0DD30045B5E7 /* StartScreen.xib */,
-				5A630464249C119E0045B5E7 /* StartScreenViewController.m */,
-				5A630466249C11B80045B5E7 /* StartScreenViewController.h */,
+				5A630470249D69030045B5E7 /* StartScreenViewController */,
 				5A630467249D56C10045B5E7 /* GalleryViewController.h */,
 				5A630468249D56C10045B5E7 /* GalleryViewController.m */,
 				5A63046A249D56E10045B5E7 /* InfoController.h */,
 				5A63046B249D56E10045B5E7 /* InfoController.m */,
+				5A63046D249D62E30045B5E7 /* Colors.m */,
+				5A522028249E215B00B06118 /* ActionButton.h */,
+				5A522029249E215B00B06118 /* ActionButton.m */,
+				5A63046F249D64E10045B5E7 /* Colors.h */,
 			);
 			path = RsSchoolTask2.6;
 			sourceTree = "<group>";
@@ -150,6 +171,23 @@
 				5A630456249C0D2A0045B5E7 /* Info.plist */,
 			);
 			path = RsSchoolTask2.6UITests;
+			sourceTree = "<group>";
+		};
+		5A630470249D69030045B5E7 /* StartScreenViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5A630466249C11B80045B5E7 /* StartScreenViewController.h */,
+				5A630464249C119E0045B5E7 /* StartScreenViewController.m */,
+				5A630471249D69460045B5E7 /* Circle.h */,
+				5A630472249D69460045B5E7 /* Circle.m */,
+				5A630474249D6F1A0045B5E7 /* Triangle.h */,
+				5A630475249D6F1A0045B5E7 /* Triangle.m */,
+				5A630477249D6F430045B5E7 /* ColoredView.h */,
+				5A630478249D6F430045B5E7 /* ColoredView.m */,
+				5A522025249E1E3600B06118 /* Square.h */,
+				5A522026249E1E3600B06118 /* Square.m */,
+			);
+			path = StartScreenViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,11 +320,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A522027249E1E3600B06118 /* Square.m in Sources */,
 				5A630435249C0D280045B5E7 /* ViewController.m in Sources */,
 				5A63042F249C0D280045B5E7 /* AppDelegate.m in Sources */,
 				5A630440249C0D2A0045B5E7 /* main.m in Sources */,
+				5A630479249D6F430045B5E7 /* ColoredView.m in Sources */,
+				5A52202A249E215B00B06118 /* ActionButton.m in Sources */,
+				5A630473249D69460045B5E7 /* Circle.m in Sources */,
 				5A630432249C0D280045B5E7 /* SceneDelegate.m in Sources */,
+				5A630476249D6F1A0045B5E7 /* Triangle.m in Sources */,
 				5A630465249C119E0045B5E7 /* StartScreenViewController.m in Sources */,
+				5A63046E249D62E30045B5E7 /* Colors.m in Sources */,
 				5A63046C249D56E10045B5E7 /* InfoController.m in Sources */,
 				5A630469249D56C10045B5E7 /* GalleryViewController.m in Sources */,
 			);
