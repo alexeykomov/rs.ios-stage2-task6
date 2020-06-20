@@ -29,18 +29,14 @@
     
     Colors *colors = [[Colors alloc] init];
     
-    self.buttonStart.layer.cornerRadius = 55.0 / 2.0;
-    self.buttonStart.backgroundColor = UIColor.yellowColor;
-    self.buttonStart.translatesAutoresizingMaskIntoConstraints = false;
-    [self.buttonStart.widthAnchor constraintEqualToConstant:250].active = true;
-    [self.buttonStart.heightAnchor constraintEqualToConstant:55].active = true;
-    [[self.buttonStart centerXAnchor] constraintEqualToAnchor:[self.view centerXAnchor]].active = true;
-    [[self.buttonStart bottomAnchor] constraintLessThanOrEqualToAnchor:[self.view bottomAnchor] constant:-10].active = true;
-    NSLayoutConstraint *buttonStartDesiredBottom = [[self.buttonStart bottomAnchor] constraintEqualToAnchor:[self.view bottomAnchor] constant:-100];
-    buttonStartDesiredBottom.active = true;
-    buttonStartDesiredBottom.priority = 900.0;
-    
+    [self setUpLabelGreetings:colors];
+    [self setUpShapesContainer:colors];
+    [self setUpButtonStart:colors];
 
+    NSLog(@"View loaded");
+}
+
+- (void) setUpLabelGreetings:(Colors*)colors {
     self.labelGreetings.translatesAutoresizingMaskIntoConstraints = false;
     [[self.labelGreetings centerXAnchor] constraintEqualToAnchor:[self.view centerXAnchor]].active = true;
     NSLayoutConstraint *labelGreetingsDesiredTop = [[self.labelGreetings topAnchor] constraintEqualToAnchor:[self.view topAnchor] constant:115];
@@ -49,8 +45,10 @@
     [self.labelGreetings.heightAnchor constraintEqualToConstant:55].active = true;
     [[self.labelGreetings topAnchor] constraintGreaterThanOrEqualToAnchor:[self.view topAnchor] constant:10].active = true;
     
+    self.labelGreetings.textColor = colors.black;
+}
 
-    
+- (void) setUpShapesContainer:(Colors*)colors {
     Circle *circle = [[Circle alloc] initWithColor:colors.red];
     [circle.widthAnchor constraintEqualToConstant:70.0].active = true;
     [circle.heightAnchor constraintEqualToConstant:70.0].active = true;
@@ -83,15 +81,25 @@
     [[self.shapesContainer bottomAnchor] constraintLessThanOrEqualToAnchor:[self.buttonStart topAnchor] constant:-70].active = true;
     [[self.shapesContainer centerXAnchor] constraintEqualToAnchor:[self.view centerXAnchor]].active = true;
     
-    self.labelGreetings.textColor = colors.black;
-    [self.buttonStart setTitleColor:colors.black forState:UIControlStateNormal];
-    self.buttonStart.backgroundColor = colors.yellow;
-
     [triangle startAnimation];
     [circle startAnimation];
     [square startAnimation];
-   
-    NSLog(@"View loaded");
+}
+
+- (void) setUpButtonStart:(Colors*)colors {
+    self.buttonStart.layer.cornerRadius = 55.0 / 2.0;
+    self.buttonStart.backgroundColor = UIColor.yellowColor;
+    self.buttonStart.translatesAutoresizingMaskIntoConstraints = false;
+    [self.buttonStart.widthAnchor constraintEqualToConstant:250].active = true;
+    [self.buttonStart.heightAnchor constraintEqualToConstant:55].active = true;
+    [[self.buttonStart centerXAnchor] constraintEqualToAnchor:[self.view centerXAnchor]].active = true;
+    [[self.buttonStart bottomAnchor] constraintLessThanOrEqualToAnchor:[self.view bottomAnchor] constant:-10].active = true;
+    NSLayoutConstraint *buttonStartDesiredBottom = [[self.buttonStart bottomAnchor] constraintEqualToAnchor:[self.view bottomAnchor] constant:-100];
+    buttonStartDesiredBottom.active = true;
+    buttonStartDesiredBottom.priority = 900.0;
+    
+    [self.buttonStart setTitleColor:colors.black forState:UIControlStateNormal];
+    self.buttonStart.backgroundColor = colors.yellow;
 }
 
 - (void) viewDidAppear:(BOOL) animated {
