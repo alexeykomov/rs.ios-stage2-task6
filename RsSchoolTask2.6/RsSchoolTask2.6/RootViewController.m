@@ -11,6 +11,7 @@
 #import "GalleryViewController.h"
 #import "InfoController.h"
 #import "HomeViewController.h"
+#import "Colors.h"
 
 @interface RootViewController ()
 
@@ -40,32 +41,43 @@
 }
 
 - (void) showMainViewController {
+    Colors *colors = [[Colors alloc] init];
+    
+    
     UITabBarController *tabs = [[UITabBarController alloc] init];
     
-    tabs.tabBar.tintColor = UIColor.blackColor;
-    UIViewController *galleryViewController = [[UIViewController alloc] init];
-    galleryViewController.title = @"Info";
-    UINavigationController *galleryViewControllerWithNavigation = [[UINavigationController alloc ] initWithRootViewController:galleryViewController];
-    UITabBarItem *galleryTabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:[UIImage imageNamed:@"gallery_unselected"] tag:0];
-    galleryTabBarItem.selectedImage = [UIImage imageNamed:@"gallery_selected"];
-    galleryViewControllerWithNavigation.tabBarItem = galleryTabBarItem;
-    
+    tabs.tabBar.tintColor = colors.black;
     
     InfoController *infoViewController = [[InfoController alloc] init];
-    infoViewController.title = @"Gallery";
+    infoViewController.title = @"Info";
     UINavigationController *infoViewControllerWithNavigation = [[UINavigationController alloc ] initWithRootViewController:infoViewController];
-    UITabBarItem *infoTabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:[UIImage imageNamed:@"info_unselected"] tag:1];
+    UIImage *infoImage = [UIImage imageNamed:@"info_unselected"];
+    UITabBarItem *infoTabBarItem = [[UITabBarItem alloc] initWithTitle:@"" image:infoImage tag:0];
+    
     infoTabBarItem.selectedImage = [UIImage imageNamed:@"info_selected"];
     infoViewControllerWithNavigation.tabBarItem = infoTabBarItem;
+    infoViewControllerWithNavigation.navigationBar.barTintColor = colors.yellow;
+    infoViewControllerWithNavigation.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:colors.black};
+    
+    UIViewController *galleryViewController = [[UIViewController alloc] init];
+    galleryViewController.title = @"Gallery";
+    UINavigationController *galleryViewControllerWithNavigation = [[UINavigationController alloc ] initWithRootViewController:galleryViewController];
+    UITabBarItem *galleryTabBarItem = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"gallery_unselected"] tag:1];
+    galleryTabBarItem.selectedImage = [UIImage imageNamed:@"gallery_selected"];
+    galleryViewControllerWithNavigation.tabBarItem = galleryTabBarItem;
+    galleryViewControllerWithNavigation.navigationBar.barTintColor = colors.yellow;
+    galleryViewControllerWithNavigation.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:colors.black};
     
     HomeViewController *homeViewController = [[HomeViewController alloc] init];
     homeViewController.title = @"RSSSchool Task 6";
     UINavigationController *homeViewControllerWithNavigation = [[UINavigationController alloc ] initWithRootViewController:homeViewController];
-    UITabBarItem *homeTabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:[UIImage imageNamed:@"home_unselected"] tag:2];
+    UITabBarItem *homeTabBarItem = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"home_unselected"] tag:2];
     homeTabBarItem.selectedImage = [UIImage imageNamed:@"home_selected"];
     homeViewControllerWithNavigation.tabBarItem = homeTabBarItem;
+    homeViewControllerWithNavigation.navigationBar.barTintColor = colors.yellow;
+    homeViewControllerWithNavigation.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:colors.black};
     
-    tabs.viewControllers = @[galleryViewControllerWithNavigation, infoViewControllerWithNavigation, homeViewControllerWithNavigation];
+    tabs.viewControllers = @[infoViewControllerWithNavigation, galleryViewControllerWithNavigation, homeViewControllerWithNavigation];
     
     
     [self addChildViewController:tabs];
