@@ -7,6 +7,8 @@
 //
 
 #import "InfoController.h"
+#import <Photos/Photos.h>
+#import "PhotoItemTableViewCell.h"
 
 @interface InfoController ()
 
@@ -22,29 +24,55 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    //[[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
+    
+    PHFetchOptions *options = [[PHFetchOptions alloc] init];
+    options.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:true]];
+    PHFetchResult *allPhotos = [PHAsset fetchAssetsWithOptions:options];
+    
+    self.dataSource = [[NSMutableArray alloc] init];
+    
+    [allPhotos enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSLog(@"Photo asset: %@", obj);
+        [self.dataSource addObject:obj];
+    }];
+    
+    [self.tableView registerClass:PhotoItemTableViewCell.class forCellReuseIdentifier:@"photoCellId"];
+    [self.tableView reloadData];
+    
+    NSLog(@"All photos: %@", allPhotos);
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of rows
-    return 0;
+    return [self.dataSource count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    PhotoItemTableViewCell *cell = (PhotoItemTableViewCell*) [tableView dequeueReusableCellWithIdentifier:@"photoCellId" forIndexPath:indexPath];
     
-    // Configure the cell...
+    PHAsset *asset = self.dataSource[indexPath.row];
+    
+    NSLog(@"Asset: %@", asset);
+    
+    cell.fileName.text = self.dataSource[indexPath.row].description;
+    [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(100, 100) contentMode:PHImageContentModeDefault options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        cell.preview.image = result;
+        NSLog(@"Info: %@", info);
+    }];
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
