@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5A522027249E1E3600B06118 /* Square.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A522026249E1E3600B06118 /* Square.m */; };
 		5A52202A249E215B00B06118 /* ActionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A522029249E215B00B06118 /* ActionButton.m */; };
+		5A52202D249E3FEC00B06118 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A52202C249E3FEB00B06118 /* RootViewController.m */; };
 		5A63042F249C0D280045B5E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A63042E249C0D280045B5E7 /* AppDelegate.m */; };
 		5A630432249C0D280045B5E7 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A630431249C0D280045B5E7 /* SceneDelegate.m */; };
 		5A630435249C0D280045B5E7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A630434249C0D280045B5E7 /* ViewController.m */; };
@@ -25,6 +26,7 @@
 		5A630473249D69460045B5E7 /* Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A630472249D69460045B5E7 /* Circle.m */; };
 		5A630476249D6F1A0045B5E7 /* Triangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A630475249D6F1A0045B5E7 /* Triangle.m */; };
 		5A630479249D6F430045B5E7 /* ColoredView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A630478249D6F430045B5E7 /* ColoredView.m */; };
+		5A765604249E59A20071D6AA /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A765603249E59A20071D6AA /* HomeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		5A522026249E1E3600B06118 /* Square.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Square.m; sourceTree = "<group>"; };
 		5A522028249E215B00B06118 /* ActionButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionButton.h; sourceTree = "<group>"; };
 		5A522029249E215B00B06118 /* ActionButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActionButton.m; sourceTree = "<group>"; };
+		5A52202B249E3FEB00B06118 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		5A52202C249E3FEB00B06118 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		5A63042A249C0D280045B5E7 /* RsSchoolTask2.6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RsSchoolTask2.6.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A63042D249C0D280045B5E7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5A63042E249C0D280045B5E7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -81,6 +85,8 @@
 		5A630475249D6F1A0045B5E7 /* Triangle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Triangle.m; sourceTree = "<group>"; };
 		5A630477249D6F430045B5E7 /* ColoredView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColoredView.h; sourceTree = "<group>"; };
 		5A630478249D6F430045B5E7 /* ColoredView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColoredView.m; sourceTree = "<group>"; };
+		5A765602249E59A20071D6AA /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		5A765603249E59A20071D6AA /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +141,8 @@
 				5A63042E249C0D280045B5E7 /* AppDelegate.m */,
 				5A630430249C0D280045B5E7 /* SceneDelegate.h */,
 				5A630431249C0D280045B5E7 /* SceneDelegate.m */,
+				5A52202B249E3FEB00B06118 /* RootViewController.h */,
+				5A52202C249E3FEB00B06118 /* RootViewController.m */,
 				5A630433249C0D280045B5E7 /* ViewController.h */,
 				5A630434249C0D280045B5E7 /* ViewController.m */,
 				5A630439249C0D2A0045B5E7 /* Assets.xcassets */,
@@ -151,6 +159,8 @@
 				5A522028249E215B00B06118 /* ActionButton.h */,
 				5A522029249E215B00B06118 /* ActionButton.m */,
 				5A63046F249D64E10045B5E7 /* Colors.h */,
+				5A765602249E59A20071D6AA /* HomeViewController.h */,
+				5A765603249E59A20071D6AA /* HomeViewController.m */,
 			);
 			path = RsSchoolTask2.6;
 			sourceTree = "<group>";
@@ -328,6 +338,8 @@
 				5A52202A249E215B00B06118 /* ActionButton.m in Sources */,
 				5A630473249D69460045B5E7 /* Circle.m in Sources */,
 				5A630432249C0D280045B5E7 /* SceneDelegate.m in Sources */,
+				5A765604249E59A20071D6AA /* HomeViewController.m in Sources */,
+				5A52202D249E3FEC00B06118 /* RootViewController.m in Sources */,
 				5A630476249D6F1A0045B5E7 /* Triangle.m in Sources */,
 				5A630465249C119E0045B5E7 /* StartScreenViewController.m in Sources */,
 				5A63046E249D62E30045B5E7 /* Colors.m in Sources */,

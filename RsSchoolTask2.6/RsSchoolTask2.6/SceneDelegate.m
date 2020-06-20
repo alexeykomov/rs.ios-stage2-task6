@@ -8,6 +8,7 @@
 
 #import "SceneDelegate.h"
 #import "StartScreenViewController.h"
+#import "RootViewController.h"
 
 @interface SceneDelegate ()
 
@@ -25,7 +26,7 @@
     NSLog(@"windowScene.coordinateSpace.bounds: %@", NSStringFromCGRect(windowScene.coordinateSpace.bounds));
     self.window = [[UIWindow alloc] initWithFrame:windowScene.coordinateSpace.bounds];
     self.window.windowScene = windowScene;
-    self.window.rootViewController = [[StartScreenViewController alloc] initWithNibName:@"StartScreen" bundle:nil];
+    self.window.rootViewController = [[RootViewController alloc] init];
     [self.window makeKeyAndVisible];
 }
 

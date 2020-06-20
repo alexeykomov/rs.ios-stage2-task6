@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "StartScreenViewController.h"
+#import "RootViewController.h"
 
 @interface AppDelegate ()
 
@@ -21,7 +22,7 @@
     
     UIWindow *window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     self.window = window;
-    StartScreenViewController *rootViewController = [[StartScreenViewController alloc] initWithNibName:@"StartScreen" bundle:nil];
+    RootViewController *rootViewController = [[RootViewController alloc] init];
     self.window.rootViewController = rootViewController;
     [self.window makeKeyAndVisible];
     
