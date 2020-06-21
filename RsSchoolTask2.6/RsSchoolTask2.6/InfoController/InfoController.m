@@ -37,20 +37,22 @@
     
     //[[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
     self.dataSource = [[NSMutableArray alloc] init];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        PHFetchOptions *options = [[PHFetchOptions alloc] init];
-        options.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:false]];
-        PHFetchResult *allPhotos = [PHAsset fetchAssetsWithOptions:options];
-        [allPhotos enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-          
-            [self.dataSource addObject:obj];
-        }];
-        dispatch_async(dispatch_get_main_queue(),^{
-            [self.tableView reloadData];
-        });
+    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+        NSLog(@"Authorization status: %ld", status);
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            PHFetchOptions *options = [[PHFetchOptions alloc] init];
+            options.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:false]];
+            PHFetchResult *allPhotos = [PHAsset fetchAssetsWithOptions:options];
+            [allPhotos enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+              
+                [self.dataSource addObject:obj];
+            }];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
 
-    });
-    
+        });
+    }];
     
     [self.tableView registerClass:PhotoItemTableViewCell.class forCellReuseIdentifier:@"photoCellId"];
     //[self.tableView reloadData];

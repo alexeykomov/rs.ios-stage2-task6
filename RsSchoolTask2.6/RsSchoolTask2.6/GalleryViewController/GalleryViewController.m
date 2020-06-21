@@ -38,18 +38,21 @@ static NSString * const reuseIdentifier = @"photoCellId";
     [self.collectionView registerClass:[PhotoItemCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     self.dataSource = [[NSMutableArray alloc] init];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        PHFetchOptions *options = [[PHFetchOptions alloc] init];
-        options.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:false]];
-        PHFetchResult *allPhotos = [PHAsset fetchAssetsWithOptions:options];
-        [allPhotos enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [self.dataSource addObject:obj];
-        }];
-        dispatch_async(dispatch_get_main_queue(),^{
-            [self.collectionView reloadData];
+    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            PHFetchOptions *options = [[PHFetchOptions alloc] init];
+            options.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:false]];
+            PHFetchResult *allPhotos = [PHAsset fetchAssetsWithOptions:options];
+            [allPhotos enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [self.dataSource addObject:obj];
+            }];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.collectionView reloadData];
+            });
         });
-    });
 
+    }];
+    
     self.collectionView.backgroundColor = self.colors.white;
     self.collectionView.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
     
