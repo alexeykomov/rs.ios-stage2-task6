@@ -89,7 +89,9 @@
         NSForegroundColorAttributeName:self.colors.black,
         NSFontAttributeName:[UIFont systemFontOfSize:17.0 weight:UIFontWeightSemibold]
     }];
-    [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(80, 80) contentMode:PHImageContentModeAspectFit options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+    [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(160, 160) contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        cell.preview.contentMode = UIViewContentModeScaleAspectFill;
+        cell.preview.layer.masksToBounds = YES;
         cell.preview.image = result;
                 
         switch (asset.sourceType) {
