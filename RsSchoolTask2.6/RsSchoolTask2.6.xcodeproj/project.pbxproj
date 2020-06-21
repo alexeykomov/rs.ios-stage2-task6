@@ -29,6 +29,7 @@
 		5A765604249E59A20071D6AA /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A765603249E59A20071D6AA /* HomeViewController.m */; };
 		5A765607249EA3530071D6AA /* PhotoItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A765606249EA3530071D6AA /* PhotoItemTableViewCell.m */; };
 		5AE2B812249F7F6D00CDAEB7 /* TextUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE2B811249F7F6D00CDAEB7 /* TextUtils.m */; };
+		5AE2B816249F903700CDAEB7 /* PhotoItemCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE2B815249F903700CDAEB7 /* PhotoItemCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,8 @@
 		5A765606249EA3530071D6AA /* PhotoItemTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoItemTableViewCell.m; sourceTree = "<group>"; };
 		5AE2B811249F7F6D00CDAEB7 /* TextUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextUtils.m; sourceTree = "<group>"; };
 		5AE2B813249F7FD400CDAEB7 /* TextUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextUtils.h; sourceTree = "<group>"; };
+		5AE2B814249F903700CDAEB7 /* PhotoItemCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoItemCollectionViewCell.h; sourceTree = "<group>"; };
+		5AE2B815249F903700CDAEB7 /* PhotoItemCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoItemCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,8 +160,7 @@
 				5A63043F249C0D2A0045B5E7 /* main.m */,
 				5A630462249C0DD30045B5E7 /* StartScreen.xib */,
 				5A630470249D69030045B5E7 /* StartScreenViewController */,
-				5A630467249D56C10045B5E7 /* GalleryViewController.h */,
-				5A630468249D56C10045B5E7 /* GalleryViewController.m */,
+				5AE2B818249F941300CDAEB7 /* GalleryViewController */,
 				5A765608249EA3660071D6AA /* InfoController */,
 				5A63046D249D62E30045B5E7 /* Colors.m */,
 				5A522028249E215B00B06118 /* ActionButton.h */,
@@ -216,6 +218,17 @@
 				5A765606249EA3530071D6AA /* PhotoItemTableViewCell.m */,
 			);
 			path = InfoController;
+			sourceTree = "<group>";
+		};
+		5AE2B818249F941300CDAEB7 /* GalleryViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5A630467249D56C10045B5E7 /* GalleryViewController.h */,
+				5A630468249D56C10045B5E7 /* GalleryViewController.m */,
+				5AE2B814249F903700CDAEB7 /* PhotoItemCollectionViewCell.h */,
+				5AE2B815249F903700CDAEB7 /* PhotoItemCollectionViewCell.m */,
+			);
+			path = GalleryViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -354,6 +367,7 @@
 				5A63042F249C0D280045B5E7 /* AppDelegate.m in Sources */,
 				5A630440249C0D2A0045B5E7 /* main.m in Sources */,
 				5A630479249D6F430045B5E7 /* ColoredView.m in Sources */,
+				5AE2B816249F903700CDAEB7 /* PhotoItemCollectionViewCell.m in Sources */,
 				5A52202A249E215B00B06118 /* ActionButton.m in Sources */,
 				5A630473249D69460045B5E7 /* Circle.m in Sources */,
 				5A630432249C0D280045B5E7 /* SceneDelegate.m in Sources */,

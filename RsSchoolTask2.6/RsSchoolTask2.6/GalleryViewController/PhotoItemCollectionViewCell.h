@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PhotoItemCollectionViewCell : UICollectionViewCell
 
 @property (strong, nonatomic) Colors* colors;
+@property (strong, nonatomic) UIImageView* preview;
 
 @end
 

@@ -32,6 +32,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //TODO: this helps to fix black background of UICollectionViewController,
+    //should find a proper way.
+    self.view.backgroundColor = UIColor.whiteColor;
+    
     [self addChildViewController:self.current];
     self.current.view.frame = self.view.bounds;
     [self.view addSubview:self.current.view];
@@ -61,7 +65,7 @@
     infoViewControllerWithNavigation.navigationBar.titleTextAttributes =
     getTextAttributes(colors.black, 18.0, UIFontWeightSemibold);
     
-    UIViewController *galleryViewController = [[UIViewController alloc] init];
+    GalleryViewController *galleryViewController = [[GalleryViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
     galleryViewController.title = @"Gallery";
     UINavigationController *galleryViewControllerWithNavigation = [[UINavigationController alloc ] initWithRootViewController:galleryViewController];
     UITabBarItem *galleryTabBarItem = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"gallery_unselected"] tag:1];

@@ -9,6 +9,7 @@
 #import "GalleryViewController.h"
 #import "PhotoItemCollectionViewCell.h"
 #import <Photos/Photos.h>
+#import "Colors.h"
 
 @interface GalleryViewController ()
 
@@ -17,6 +18,15 @@
 @implementation GalleryViewController
 
 static NSString * const reuseIdentifier = @"photoCellId";
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.colors = [[Colors alloc] init];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,6 +47,14 @@ static NSString * const reuseIdentifier = @"photoCellId";
         NSLog(@"Photo asset: %@", obj);
         [self.dataSource addObject:obj];
     }];
+    
+
+    self.collectionView.backgroundColor = self.colors.white;
+    self.collectionView.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*) self.collectionViewLayout;
+    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
 }
 
 /*
@@ -53,40 +71,83 @@ static NSString * const reuseIdentifier = @"photoCellId";
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
 #warning Incomplete implementation, return the number of sections
-    return 1;
+    int numberOfSections = ceil((float)[self.dataSource count] / 3.0);
+    NSLog(@"Data source count: %d", [self.dataSource count]);
+    NSLog(@"Number of sections: %d", numberOfSections);
+    return numberOfSections;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of items
-    return [self.dataSource count];
+    return 3;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    NSLog(@"cellForItemAtIndexPath method, index path: %@", indexPath);
+    long index = indexPath.row + indexPath.section * 3;
+
+    PhotoItemCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    if (index >= [self.dataSource count]) {
+        return cell;
+    }
     
-    // Configure the cell
+    PHAsset *asset = self.dataSource[index];
+    [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(80, 80) contentMode:PHImageContentModeAspectFit options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        cell.preview.image = result;
+    }];
     
     return cell;
 }
 
+#pragma mark <UICollectionViewDelegateFlowLayout>
+
+int INSET = 5;
+int SPACING = 5;
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    long index = indexPath.row + indexPath.section * 3;
+    if (index >= [self.dataSource count]) {
+        return CGSizeZero;
+    }
+    
+    CGRect mainFrame = self.collectionView.frame;
+    NSLog(@"main frame: %@", NSStringFromCGRect(mainFrame));
+    return CGSizeMake((mainFrame.size.width - INSET * 2 - SPACING * 2) / 3,
+                      (mainFrame.size.width - INSET * 2 - SPACING * 2) / 3);
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return SPACING;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 0;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    if (section > 0) {
+        return UIEdgeInsetsMake(0, INSET, INSET, INSET);
+    }
+    return UIEdgeInsetsMake(INSET, INSET, INSET, INSET);
+}
+
 #pragma mark <UICollectionViewDelegate>
 
-/*
+
 // Uncomment this method to specify if the specified item should be highlighted during tracking
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
 	return YES;
 }
-*/
 
-/*
+
+
 // Uncomment this method to specify if the specified item should be selected
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
-*/
 
-/*
+
+
 // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
 	return NO;
@@ -97,8 +158,8 @@ static NSString * const reuseIdentifier = @"photoCellId";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
+    NSLog(@"Pressend on %@", indexPath);
 }
-*/
+
 
 @end
