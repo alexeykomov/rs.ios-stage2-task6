@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface InfoController : UITableViewController
 
-@property(strong, nonatomic) NSMutableArray<PHAsset*> *dataSource;
+@property(strong, atomic) NSMutableArray<PHAsset*> *dataSource;
 @property(strong, nonatomic) Colors *colors; 
 
 @end

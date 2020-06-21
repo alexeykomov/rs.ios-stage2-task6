@@ -37,17 +37,18 @@ static NSString * const reuseIdentifier = @"photoCellId";
     // Register cell classes
     [self.collectionView registerClass:[PhotoItemCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
-    PHFetchOptions *options = [[PHFetchOptions alloc] init];
-    options.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:false]];
-    PHFetchResult *allPhotos = [PHAsset fetchAssetsWithOptions:options];
-    
     self.dataSource = [[NSMutableArray alloc] init];
-    
-    [allPhotos enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSLog(@"Photo asset: %@", obj);
-        [self.dataSource addObject:obj];
-    }];
-    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        PHFetchOptions *options = [[PHFetchOptions alloc] init];
+        options.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:false]];
+        PHFetchResult *allPhotos = [PHAsset fetchAssetsWithOptions:options];
+        [allPhotos enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.dataSource addObject:obj];
+        }];
+        dispatch_async(dispatch_get_main_queue(),^{
+            [self.collectionView reloadData];
+        });
+    });
 
     self.collectionView.backgroundColor = self.colors.white;
     self.collectionView.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -111,7 +112,6 @@ int SPACING = 5;
     }
     
     CGRect mainFrame = self.collectionView.frame;
-    NSLog(@"main frame: %@", NSStringFromCGRect(mainFrame));
     return CGSizeMake((mainFrame.size.width - INSET * 2 - SPACING * 2) / 3,
                       (mainFrame.size.width - INSET * 2 - SPACING * 2) / 3);
 }

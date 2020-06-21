@@ -36,24 +36,28 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     //[[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
-    
-    PHFetchOptions *options = [[PHFetchOptions alloc] init];
-    options.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:false]];
-    PHFetchResult *allPhotos = [PHAsset fetchAssetsWithOptions:options];
-    
     self.dataSource = [[NSMutableArray alloc] init];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        PHFetchOptions *options = [[PHFetchOptions alloc] init];
+        options.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:false]];
+        PHFetchResult *allPhotos = [PHAsset fetchAssetsWithOptions:options];
+        [allPhotos enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+          
+            [self.dataSource addObject:obj];
+        }];
+        dispatch_async(dispatch_get_main_queue(),^{
+            [self.tableView reloadData];
+        });
+
+    });
     
-    [allPhotos enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSLog(@"Photo asset: %@", obj);
-        [self.dataSource addObject:obj];
-    }];
     
     [self.tableView registerClass:PhotoItemTableViewCell.class forCellReuseIdentifier:@"photoCellId"];
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
-    NSLog(@"All photos: %@", allPhotos);
+    
 }
 
 #pragma mark - Table view data source
