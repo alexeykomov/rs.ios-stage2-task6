@@ -41,10 +41,26 @@
     [self addSubview:self.fileInfo];
     
     self.fileName.translatesAutoresizingMaskIntoConstraints = false;
+    self.preview.translatesAutoresizingMaskIntoConstraints = false;
+    self.fileTypeIcon.translatesAutoresizingMaskIntoConstraints = false;
+    self.fileInfo.translatesAutoresizingMaskIntoConstraints = false;
     
     [NSLayoutConstraint activateConstraints: @[
-        [self.fileName.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-        [self.fileName.heightAnchor constraintEqualToConstant:100.0]
+        [self.preview.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:10.0],
+        [self.preview.topAnchor constraintEqualToAnchor:self.topAnchor constant:10.0],
+        [self.preview.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-10.0],
+        [self.preview.widthAnchor constraintEqualToAnchor:self.preview.heightAnchor],
+        
+        [self.fileName.leadingAnchor constraintEqualToAnchor:self.preview.trailingAnchor constant:10.0],
+        [self.fileName.topAnchor constraintEqualToAnchor:self.topAnchor constant:25.0],
+        [self.fileName.trailingAnchor constraintLessThanOrEqualToAnchor:self.trailingAnchor constant:-10.0],
+        [self.fileName.heightAnchor constraintEqualToConstant:20.0],
+        
+        [self.fileTypeIcon.leadingAnchor constraintEqualToAnchor:self.preview.trailingAnchor constant:10.0],
+        [self.fileTypeIcon.topAnchor constraintEqualToAnchor:self.fileName.bottomAnchor constant:10.0],
+        
+        [self.fileInfo.leadingAnchor constraintEqualToAnchor:self.fileTypeIcon.trailingAnchor constant:7.0],
+        [self.fileInfo.centerYAnchor constraintEqualToAnchor:self.fileTypeIcon.centerYAnchor],
     ]];
 }
 

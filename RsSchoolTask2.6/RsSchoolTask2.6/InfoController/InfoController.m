@@ -9,12 +9,22 @@
 #import "InfoController.h"
 #import <Photos/Photos.h>
 #import "PhotoItemTableViewCell.h"
+#import "Colors.h"
 
 @interface InfoController ()
 
 @end
 
 @implementation InfoController
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.colors = [[Colors alloc] init];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,7 +38,7 @@
     //[[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
     
     PHFetchOptions *options = [[PHFetchOptions alloc] init];
-    options.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:true]];
+    options.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:false]];
     PHFetchResult *allPhotos = [PHAsset fetchAssetsWithOptions:options];
     
     self.dataSource = [[NSMutableArray alloc] init];
@@ -59,19 +69,64 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PhotoItemTableViewCell *cell = (PhotoItemTableViewCell*) [tableView dequeueReusableCellWithIdentifier:@"photoCellId" forIndexPath:indexPath];
-    
     PHAsset *asset = self.dataSource[indexPath.row];
+    NSArray<PHAssetResource*> *assetResources = [PHAssetResource assetResourcesForAsset:asset];
+    NSString *fileName = @"";
+    if ([assetResources count] > 0) {
+        fileName = [assetResources objectAtIndex:0].originalFilename;
+    }
     
-    NSLog(@"Asset: %@", asset);
     
-    cell.fileName.text = self.dataSource[indexPath.row].description;
-    [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(100, 100) contentMode:PHImageContentModeDefault options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-        cell.preview.image = result;
-        NSLog(@"Info: %@", info);
+    cell.fileName.attributedText = [[NSAttributedString alloc] initWithString:fileName attributes:@{
+        NSForegroundColorAttributeName:self.colors.black,
+        NSFontAttributeName:[UIFont systemFontOfSize:17.0 weight:UIFontWeightSemibold]
     }];
-    
+    [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(80, 80) contentMode:PHImageContentModeAspectFit options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        cell.preview.image = result;
+                
+        switch (asset.sourceType) {
+            case PHAssetResourceTypeVideo:
+                cell.fileTypeIcon.image = [UIImage imageNamed:@"video"];
+                cell.fileInfo.attributedText = [self getSmallTextForLabel:[[NSString alloc] initWithFormat:@"%lux%lu %f",
+                                                                           (unsigned long)asset.pixelWidth,
+                                                                           (unsigned long)asset.pixelHeight,
+                                                                           asset.duration]
+                                                ];
+                break;
+            case PHAssetResourceTypeAudio:
+                cell.fileTypeIcon.image = [UIImage imageNamed:@"audio"];
+                cell.fileInfo.attributedText = [self getSmallTextForLabel:[[NSString alloc] initWithFormat:@"%f", asset.duration]];
+                break;
+            case PHAssetResourceTypePhoto:
+                cell.fileTypeIcon.image = [UIImage imageNamed:@"image"];
+                cell.fileInfo.attributedText = [self getSmallTextForLabel:[[NSString alloc] initWithFormat:@"%lux%lu",
+                                                                           (unsigned long)asset.pixelWidth,
+                                                                           (unsigned long)asset.pixelHeight]];
+                NSLog(@"icon image: %@", cell.fileTypeIcon.image);
+                break;
+            default:
+                cell.fileTypeIcon.image = [UIImage imageNamed:@"other"];
+                cell.fileInfo.text = @"";
+                break;
+        }
+    }];
     return cell;
 }
+
+- (NSAttributedString*) getTextForLabel:(NSString*)input color:(UIColor*)color
+                                  size:(CGFloat)size
+                                weight:(UIFontWeight)weight {
+    NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:input attributes:@{
+          NSForegroundColorAttributeName:color,
+          NSFontAttributeName:[UIFont systemFontOfSize:size weight:weight]
+      }];
+    return attributedText;
+}
+
+- (NSAttributedString*) getSmallTextForLabel:(NSString*)input {
+    return [self getTextForLabel:input color:self.colors.black size:12.0 weight:UIFontWeightRegular];
+}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 100;
