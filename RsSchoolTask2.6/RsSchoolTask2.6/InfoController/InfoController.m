@@ -51,6 +51,8 @@
     [self.tableView registerClass:PhotoItemTableViewCell.class forCellReuseIdentifier:@"photoCellId"];
     [self.tableView reloadData];
     
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
     NSLog(@"All photos: %@", allPhotos);
 }
 

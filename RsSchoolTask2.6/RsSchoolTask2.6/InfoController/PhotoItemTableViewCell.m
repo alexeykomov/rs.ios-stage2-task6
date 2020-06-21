@@ -7,12 +7,14 @@
 //
 
 #import "PhotoItemTableViewCell.h"
+#import "Colors.h"
 
 @implementation PhotoItemTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.colors = [[Colors alloc] init];
         [self setUp];
     }
     return self;
@@ -48,7 +50,7 @@
     [NSLayoutConstraint activateConstraints: @[
         [self.preview.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:10.0],
         [self.preview.topAnchor constraintEqualToAnchor:self.topAnchor constant:10.0],
-        [self.preview.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-10.0],
+        [self.preview.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:0],
         [self.preview.widthAnchor constraintEqualToAnchor:self.preview.heightAnchor],
         
         [self.fileName.leadingAnchor constraintEqualToAnchor:self.preview.trailingAnchor constant:10.0],
@@ -62,6 +64,9 @@
         [self.fileInfo.leadingAnchor constraintEqualToAnchor:self.fileTypeIcon.trailingAnchor constant:7.0],
         [self.fileInfo.centerYAnchor constraintEqualToAnchor:self.fileTypeIcon.centerYAnchor],
     ]];
+    
+    self.selectedBackgroundView = [[UIView alloc] init];
+    self.selectedBackgroundView.backgroundColor = self.colors.yellowHighlighted;
 }
 
 @end

@@ -12,6 +12,7 @@
 #import "InfoController.h"
 #import "HomeViewController.h"
 #import "Colors.h"
+#import "TextUtils.h"
 
 @interface RootViewController ()
 
@@ -57,7 +58,8 @@
     infoTabBarItem.selectedImage = [UIImage imageNamed:@"info_selected"];
     infoViewControllerWithNavigation.tabBarItem = infoTabBarItem;
     infoViewControllerWithNavigation.navigationBar.barTintColor = colors.yellow;
-    infoViewControllerWithNavigation.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:colors.black};
+    infoViewControllerWithNavigation.navigationBar.titleTextAttributes =
+    getTextAttributes(colors.black, 18.0, UIFontWeightSemibold);
     
     UIViewController *galleryViewController = [[UIViewController alloc] init];
     galleryViewController.title = @"Gallery";
@@ -66,7 +68,8 @@
     galleryTabBarItem.selectedImage = [UIImage imageNamed:@"gallery_selected"];
     galleryViewControllerWithNavigation.tabBarItem = galleryTabBarItem;
     galleryViewControllerWithNavigation.navigationBar.barTintColor = colors.yellow;
-    galleryViewControllerWithNavigation.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:colors.black};
+    galleryViewControllerWithNavigation.navigationBar.titleTextAttributes =
+    getTextAttributes(colors.black, 18.0, UIFontWeightSemibold);
     
     HomeViewController *homeViewController = [[HomeViewController alloc] init];
     homeViewController.title = @"RSSSchool Task 6";
@@ -75,10 +78,10 @@
     homeTabBarItem.selectedImage = [UIImage imageNamed:@"home_selected"];
     homeViewControllerWithNavigation.tabBarItem = homeTabBarItem;
     homeViewControllerWithNavigation.navigationBar.barTintColor = colors.yellow;
-    homeViewControllerWithNavigation.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:colors.black};
+    homeViewControllerWithNavigation.navigationBar.titleTextAttributes =
+    getTextAttributes(colors.black, 18.0, UIFontWeightSemibold);
     
     tabs.viewControllers = @[infoViewControllerWithNavigation, galleryViewControllerWithNavigation, homeViewControllerWithNavigation];
-    
     
     [self addChildViewController:tabs];
     tabs.view.frame = self.view.bounds;
@@ -90,7 +93,6 @@
     [self.current removeFromParentViewController];
     
     self.current = tabs;
-
 }
 
 /*

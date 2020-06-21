@@ -28,6 +28,7 @@
 		5A630479249D6F430045B5E7 /* ColoredView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A630478249D6F430045B5E7 /* ColoredView.m */; };
 		5A765604249E59A20071D6AA /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A765603249E59A20071D6AA /* HomeViewController.m */; };
 		5A765607249EA3530071D6AA /* PhotoItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A765606249EA3530071D6AA /* PhotoItemTableViewCell.m */; };
+		5AE2B812249F7F6D00CDAEB7 /* TextUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE2B811249F7F6D00CDAEB7 /* TextUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,8 @@
 		5A765603249E59A20071D6AA /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		5A765605249EA3530071D6AA /* PhotoItemTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoItemTableViewCell.h; sourceTree = "<group>"; };
 		5A765606249EA3530071D6AA /* PhotoItemTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoItemTableViewCell.m; sourceTree = "<group>"; };
+		5AE2B811249F7F6D00CDAEB7 /* TextUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextUtils.m; sourceTree = "<group>"; };
+		5AE2B813249F7FD400CDAEB7 /* TextUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextUtils.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +164,8 @@
 				5A522028249E215B00B06118 /* ActionButton.h */,
 				5A522029249E215B00B06118 /* ActionButton.m */,
 				5A63046F249D64E10045B5E7 /* Colors.h */,
+				5AE2B811249F7F6D00CDAEB7 /* TextUtils.m */,
+				5AE2B813249F7FD400CDAEB7 /* TextUtils.h */,
 				5A765602249E59A20071D6AA /* HomeViewController.h */,
 				5A765603249E59A20071D6AA /* HomeViewController.m */,
 			);
@@ -343,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AE2B812249F7F6D00CDAEB7 /* TextUtils.m in Sources */,
 				5A522027249E1E3600B06118 /* Square.m in Sources */,
 				5A630435249C0D280045B5E7 /* ViewController.m in Sources */,
 				5A63042F249C0D280045B5E7 /* AppDelegate.m in Sources */,
