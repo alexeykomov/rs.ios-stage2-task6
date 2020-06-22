@@ -29,6 +29,10 @@
     return self;
 }
 
+- (void) setUp {
+    
+}
+
 - (void)setHighlighted:(BOOL)highlighted {
     [super setHighlighted:highlighted];
     if (highlighted) {

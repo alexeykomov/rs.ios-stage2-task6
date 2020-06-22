@@ -10,6 +10,7 @@
 #import <Photos/Photos.h>
 #import "PhotoItemTableViewCell.h"
 #import "Colors.h"
+#import "FileInfoViewController.h"
 
 @interface InfoController ()
 
@@ -22,6 +23,7 @@
     self = [super init];
     if (self) {
         self.colors = [[Colors alloc] init];
+        self.fileInfoViewController = [[FileInfoViewController alloc] init];
     }
     return self;
 }
@@ -32,8 +34,6 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     //[[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
     self.dataSource = [[NSMutableArray alloc] init];
@@ -140,6 +140,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 100;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    self.fileInfoViewController.photoAsset = self.dataSource[indexPath.row];
+    [self.navigationController pushViewController:self.fileInfoViewController animated:YES];
 }
 
 /*
