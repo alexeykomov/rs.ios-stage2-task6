@@ -68,10 +68,11 @@
     [NSLayoutConstraint activateConstraints:@[
         [self.picture.topAnchor constraintEqualToAnchor:self.mainArea.topAnchor constant:10.0],
         [self.picture.leadingAnchor constraintEqualToAnchor:self.mainArea.leadingAnchor constant:10.0],
-        [self.picture.widthAnchor constraintEqualToAnchor:self.mainArea.widthAnchor constant:-20.0],
+        [self.picture.widthAnchor constraintEqualToAnchor:self.mainArea.widthAnchor constant:-20.0]
     ]];
     
     NSLog(@"Picture frame before image: %@", NSStringFromCGSize(self.picture.frame.size));
+    
     
     CGSize targetSize = CGSizeMake(self.picture.frame.size.width, self.picture.frame.size.width);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -83,6 +84,10 @@
                 return;
             }
             dispatch_async(dispatch_get_main_queue(), ^{
+                CGFloat aspectRatio = (CGFloat) asset.pixelWidth / (CGFloat) asset.pixelHeight;
+                CGFloat pictureHeight = self.picture.frame.size.width / aspectRatio;
+                [self.picture.heightAnchor constraintEqualToConstant:pictureHeight].active = YES;
+
                 self.picture.image = result;
                 NSLog(@"Picture frame after image: %@", NSStringFromCGSize(self.picture.frame.size));
             });
