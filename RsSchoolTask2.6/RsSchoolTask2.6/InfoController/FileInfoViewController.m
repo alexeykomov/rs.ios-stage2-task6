@@ -26,6 +26,7 @@
         self.creationDateLabel = [[UILabel alloc] init];
         self.modificationDateLabel = [[UILabel alloc] init];
         self.typeLabel = [[UILabel alloc] init];
+        self.aspectRatioConstraint = nil;
     }
     return self;
 }
@@ -41,11 +42,7 @@
     [self.view addSubview:self.mainArea];
     self.view.backgroundColor = self.colors.white;
     
-    
     self.picture.contentMode = UIViewContentModeScaleAspectFit;
-    self.picture.backgroundColor = UIColor.magentaColor;
-    
-    
     
     [self.mainArea addSubview:self.picture];
 }
@@ -56,6 +53,14 @@
     [self setUpLabels];
     
     self.picture.image = nil;
+    CGFloat aspectRatio = (CGFloat) asset.pixelHeight / (CGFloat) asset.pixelWidth;
+    NSLog(@"Aspect ratio: %f", aspectRatio);
+    
+    if (self.aspectRatioConstraint) {
+        [NSLayoutConstraint deactivateConstraints:@[self.aspectRatioConstraint]];
+    }
+    
+    self.aspectRatioConstraint = [self.picture.heightAnchor constraintEqualToAnchor:self.picture.widthAnchor multiplier:aspectRatio];
     
     self.mainArea.translatesAutoresizingMaskIntoConstraints = false;
     [NSLayoutConstraint activateConstraints:@[
@@ -65,14 +70,12 @@
         [self.mainArea.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
     ]];
     self.picture.translatesAutoresizingMaskIntoConstraints = false;
-    [NSLayoutConstraint activateConstraints:@[
-        [self.picture.topAnchor constraintEqualToAnchor:self.mainArea.topAnchor constant:10.0],
-        [self.picture.leadingAnchor constraintEqualToAnchor:self.mainArea.leadingAnchor constant:10.0],
-        [self.picture.widthAnchor constraintEqualToAnchor:self.mainArea.widthAnchor constant:-20.0]
-    ]];
-    
-    NSLog(@"Picture frame before image: %@", NSStringFromCGSize(self.picture.frame.size));
-    
+    [NSLayoutConstraint activateConstraints:
+     @[[self.picture.topAnchor constraintEqualToAnchor:self.mainArea.topAnchor constant:10.0],
+       [self.picture.leadingAnchor constraintEqualToAnchor:self.mainArea.leadingAnchor constant:10.0],
+       [self.picture.widthAnchor constraintEqualToAnchor:self.mainArea.widthAnchor constant:-20.0],
+       self.aspectRatioConstraint
+     ]];
     
     CGSize targetSize = CGSizeMake(self.picture.frame.size.width, self.picture.frame.size.width);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -84,11 +87,9 @@
                 return;
             }
             dispatch_async(dispatch_get_main_queue(), ^{
-                CGFloat aspectRatio = (CGFloat) asset.pixelWidth / (CGFloat) asset.pixelHeight;
-                CGFloat pictureHeight = self.picture.frame.size.width / aspectRatio;
-                [self.picture.heightAnchor constraintEqualToConstant:pictureHeight].active = YES;
-
                 self.picture.image = result;
+                [self.picture setNeedsLayout];
+                [self.picture layoutIfNeeded];
                 NSLog(@"Picture frame after image: %@", NSStringFromCGSize(self.picture.frame.size));
             });
         }];
@@ -101,7 +102,7 @@
     [labels addArrangedSubview:self.modificationDateLabel];
     [labels addArrangedSubview:self.typeLabel];
     
-    labels.backgroundColor = UIColor.redColor;
+    labels.backgroundColor = UIColor.magentaColor;
     labels.axis = UILayoutConstraintAxisVertical;
     labels.alignment = UIStackViewAlignmentLeading;
     labels.distribution = UIStackViewDistributionEqualCentering;
@@ -115,6 +116,9 @@
         [labels.topAnchor constraintEqualToAnchor:self.picture.bottomAnchor constant:10.0],
         [labels.leadingAnchor constraintEqualToAnchor:self.mainArea.leadingAnchor constant:10.0],
         [labels.trailingAnchor constraintEqualToAnchor:self.mainArea.trailingAnchor constant:-10.0],
+        //NOTE: The last element in scroll view must be pinned down to the scroll view bottom
+        //https://stackoverflow.com/a/54577278/2358411
+        [labels.bottomAnchor constraintEqualToAnchor:self.mainArea.bottomAnchor constant:-10.0],
     ]];
     
     PHAsset *asset = self.photoAsset;
