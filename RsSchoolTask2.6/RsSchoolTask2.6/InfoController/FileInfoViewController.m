@@ -9,6 +9,7 @@
 #import "FileInfoViewController.h"
 #import <Photos/Photos.h>
 #import "TextUtils.h"
+#import "ActionButton.h"
 
 @interface FileInfoViewController ()
 
@@ -20,12 +21,6 @@
 {
     self = [super init];
     if (self) {
-        self.colors = [[Colors alloc] init];
-        self.mainArea = [[UIScrollView alloc] init];
-        self.picture = [[UIImageView alloc] init];
-        self.creationDateLabel = [[UILabel alloc] init];
-        self.modificationDateLabel = [[UILabel alloc] init];
-        self.typeLabel = [[UILabel alloc] init];
         self.aspectRatioConstraint = nil;
     }
     return self;
@@ -38,19 +33,36 @@
     
     self.title = @"File info";
     
+    self.colors = [[Colors alloc] init];
+    self.mainArea = [[UIScrollView alloc] init];
+    self.picture = [[UIImageView alloc] init];
+    self.creationDateLabel = [[UILabel alloc] init];
+    self.modificationDateLabel = [[UILabel alloc] init];
+    self.typeLabel = [[UILabel alloc] init];
+    self.shareButton = [[ActionButton alloc] init];
+    self.labels = [[UIStackView alloc] init];
     
     [self.view addSubview:self.mainArea];
     self.view.backgroundColor = self.colors.white;
+    self.mainArea.backgroundColor = self.colors.blue;
     
     self.picture.contentMode = UIViewContentModeScaleAspectFit;
     
     [self.mainArea addSubview:self.picture];
+    
+    [self.labels addArrangedSubview:self.creationDateLabel];
+    [self.labels addArrangedSubview:self.modificationDateLabel];
+    [self.labels addArrangedSubview:self.typeLabel];
+    [self.shareButton setTitle:@"Share" forState:UIControlStateNormal];
+    
+    [self.mainArea addSubview:self.labels];
+    [self.mainArea addSubview:self.shareButton];
+    
+    [self setUpLabels];
 }
 
 -(void) viewWillAppear:(BOOL)animated {
     PHAsset *asset = self.photoAsset;
-    
-    [self setUpLabels];
     
     self.picture.image = nil;
     CGFloat aspectRatio = (CGFloat) asset.pixelHeight / (CGFloat) asset.pixelWidth;
@@ -97,43 +109,47 @@
 }
 
 - (void) setUpLabels {
-    UIStackView *labels = [[UIStackView alloc] init];
-    [labels addArrangedSubview:self.creationDateLabel];
-    [labels addArrangedSubview:self.modificationDateLabel];
-    [labels addArrangedSubview:self.typeLabel];
-    
-    labels.backgroundColor = UIColor.magentaColor;
-    labels.axis = UILayoutConstraintAxisVertical;
-    labels.alignment = UIStackViewAlignmentLeading;
-    labels.distribution = UIStackViewDistributionEqualCentering;
-    labels.spacing = 10.0;
-    
-    [self.mainArea addSubview:labels];
-    
-    labels.translatesAutoresizingMaskIntoConstraints = false;
-    
+   
+    self.shareButton.translatesAutoresizingMaskIntoConstraints = false;
     [NSLayoutConstraint activateConstraints:@[
-        [labels.topAnchor constraintEqualToAnchor:self.picture.bottomAnchor constant:10.0],
-        [labels.leadingAnchor constraintEqualToAnchor:self.mainArea.leadingAnchor constant:10.0],
-        [labels.trailingAnchor constraintEqualToAnchor:self.mainArea.trailingAnchor constant:-10.0],
+        [self.shareButton.centerXAnchor constraintEqualToAnchor:self.mainArea.centerXAnchor],
+        [self.shareButton.bottomAnchor constraintEqualToAnchor:self.mainArea.bottomAnchor constant:-10.0]
+    ]];
+    
+    self.labels.backgroundColor = UIColor.magentaColor;
+    self.labels.axis = UILayoutConstraintAxisVertical;
+    self.labels.alignment = UIStackViewAlignmentLeading;
+    self.labels.distribution = UIStackViewDistributionEqualCentering;
+    self.labels.spacing = 10.0;
+    
+    
+    
+    self.labels.translatesAutoresizingMaskIntoConstraints = false;
+    
+
+    [NSLayoutConstraint activateConstraints:@[
+        [self.labels.topAnchor constraintEqualToAnchor:self.picture.bottomAnchor constant:10.0],
+        [self.labels.leadingAnchor constraintEqualToAnchor:self.mainArea.leadingAnchor constant:10.0],
+        [self.labels.trailingAnchor constraintEqualToAnchor:self.mainArea.trailingAnchor constant:-10.0],
         //NOTE: The last element in scroll view must be pinned down to the scroll view bottom
         //https://stackoverflow.com/a/54577278/2358411
-        [labels.bottomAnchor constraintEqualToAnchor:self.mainArea.bottomAnchor constant:-10.0],
+        [self.labels.bottomAnchor constraintEqualToAnchor:self.shareButton.topAnchor constant:-10.0],
     ]];
+    
     
     PHAsset *asset = self.photoAsset;
     NSMutableAttributedString *creationDate = [[NSMutableAttributedString alloc] init];
-    [creationDate appendAttributedString:[[NSAttributedString alloc] initWithString:@"Creation date" attributes:getTextAttributes(self.colors.gray, 17.0, UIFontWeightRegular)]];
+    [creationDate appendAttributedString:[[NSAttributedString alloc] initWithString:@"Creation date: " attributes:getTextAttributes(self.colors.gray, 17.0, UIFontWeightRegular)]];
     [creationDate appendAttributedString:[[NSAttributedString alloc] initWithString:@"asset.creationDate" attributes:getTextAttributes(self.colors.black, 17.0, UIFontWeightRegular)]];
     self.creationDateLabel.attributedText = creationDate;
     
     NSMutableAttributedString *modificationDate = [[NSMutableAttributedString alloc] init];
-    [modificationDate appendAttributedString:[[NSAttributedString alloc] initWithString:@"Modification date" attributes:getTextAttributes(self.colors.gray, 17.0, UIFontWeightRegular)]];
+    [modificationDate appendAttributedString:[[NSAttributedString alloc] initWithString:@"Modification date: " attributes:getTextAttributes(self.colors.gray, 17.0, UIFontWeightRegular)]];
     [modificationDate appendAttributedString:[[NSAttributedString alloc] initWithString:@"asset.modificationDate" attributes:getTextAttributes(self.colors.black, 17.0, UIFontWeightRegular)]];
     self.modificationDateLabel.attributedText = modificationDate;
     
     NSMutableAttributedString *type = [[NSMutableAttributedString alloc] init];
-    [type appendAttributedString:[[NSAttributedString alloc] initWithString:@"Type" attributes:getTextAttributes(self.colors.gray, 17.0, UIFontWeightRegular)]];
+    [type appendAttributedString:[[NSAttributedString alloc] initWithString:@"Type: " attributes:getTextAttributes(self.colors.gray, 17.0, UIFontWeightRegular)]];
     [type appendAttributedString:[[NSAttributedString alloc] initWithString:@"asset.mediaType" attributes:getTextAttributes(self.colors.black, 17.0, UIFontWeightRegular)]];
     self.typeLabel.attributedText = type;
 }

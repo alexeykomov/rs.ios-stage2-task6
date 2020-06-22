@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Photos/Photos.h>
 #import "Colors.h"
+#import "FileInfoViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, atomic) NSMutableArray<PHAsset*>* dataSource;
 @property (strong, nonatomic) Colors *colors; 
+@property(strong, nonatomic) FileInfoViewController *fileInfoViewController;
 
 @end
 

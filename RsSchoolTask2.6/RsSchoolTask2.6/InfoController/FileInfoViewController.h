@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Photos/Photos.h>
 #import "Colors.h"
+#import "ActionButton.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) Colors *colors;
 @property (strong, nonatomic) UIScrollView *mainArea;
 @property (strong, nonatomic) NSLayoutConstraint *aspectRatioConstraint;
+@property (strong, nonatomic) ActionButton *shareButton;
+@property (strong, nonatomic) UIStackView *labels;
 
 @end
 

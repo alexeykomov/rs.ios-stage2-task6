@@ -16,6 +16,7 @@
     self = [super init];
     if (self) {
         self.colors = [[Colors alloc] init];
+        [self setUp];
     }
     return self;
 }
@@ -25,12 +26,19 @@
     self = [super initWithCoder:coder];
     if (self) {
         self.colors = [[Colors alloc] init];
+        [self setUp];
     }
     return self;
 }
 
 - (void) setUp {
+    self.layer.cornerRadius = 55.0 / 2.0;
+    self.translatesAutoresizingMaskIntoConstraints = false;
+    [self.widthAnchor constraintEqualToConstant:250].active = true;
+    [self.heightAnchor constraintEqualToConstant:55].active = true;
     
+    [self setTitleColor:self.colors.black forState:UIControlStateNormal];
+    self.backgroundColor = self.colors.yellow;
 }
 
 - (void)setHighlighted:(BOOL)highlighted {

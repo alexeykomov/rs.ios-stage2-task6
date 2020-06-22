@@ -10,6 +10,7 @@
 #import "PhotoItemCollectionViewCell.h"
 #import <Photos/Photos.h>
 #import "Colors.h"
+#import "FileInfoViewController.h"
 
 @interface GalleryViewController ()
 
@@ -24,6 +25,7 @@ static NSString * const reuseIdentifier = @"photoCellId";
     self = [super init];
     if (self) {
         self.colors = [[Colors alloc] init];
+        self.fileInfoViewController = [[FileInfoViewController alloc] init];
     }
     return self;
 }
@@ -159,6 +161,8 @@ int SPACING = 5;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"Selected cell at index path: %@", indexPath);
     PhotoItemCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    self.fileInfoViewController.photoAsset = self.dataSource[indexPath.row];
+    [self presentViewController:self.fileInfoViewController animated:YES completion:^{}];
 }
 
 
