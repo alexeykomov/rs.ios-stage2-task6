@@ -31,7 +31,6 @@
     NSLog(@"View did load.");
     // Do any additional setup after loading the view.
     
-    //TODO: Provide file name as title.
     self.title = @"File info";
     
     self.colors = [[Colors alloc] init];
@@ -72,6 +71,14 @@
 
 -(void) viewWillAppear:(BOOL)animated {
     PHAsset *asset = self.photoAsset;
+    
+    
+    NSArray<PHAssetResource*> *assetResources = [PHAssetResource assetResourcesForAsset:asset];
+    NSString *fileName = @"File info";
+    if ([assetResources count] > 0) {
+        fileName = [assetResources objectAtIndex:0].originalFilename;
+        self.title = fileName;
+    }
     
     self.picture.image = nil;
     CGFloat aspectRatio = (CGFloat) asset.pixelHeight / (CGFloat) asset.pixelWidth;
@@ -116,6 +123,10 @@
             });
         }];
     });
+}
+
+- (void) onBackPress:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) setUpLabels {

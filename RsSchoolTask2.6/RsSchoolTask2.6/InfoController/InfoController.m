@@ -61,6 +61,10 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
+    self.navigationController.navigationBar.backIndicatorImage = [UIImage imageNamed:@"back"];
+    self.navigationController.navigationBar.backIndicatorTransitionMaskImage = [UIImage imageNamed:@"back"];
+    self.navigationController.navigationBar.tintColor = self.colors.black;
+    self.navigationController.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     
 }
 
@@ -147,6 +151,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.fileInfoViewController.photoAsset = self.dataSource[indexPath.row];
+    
+
+    
     [self.navigationController pushViewController:self.fileInfoViewController animated:YES];
 }
 

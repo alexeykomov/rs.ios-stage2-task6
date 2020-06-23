@@ -176,10 +176,17 @@ int SPACING = 5;
     if (index >= [self.dataSource count]) {
         return;
     }
-    self.fileInfoViewController.photoAsset = self.dataSource[index];
-    //TODO: Provide file name as title.
-    self.fileInfoViewController.title = @"Info";
+    PHAsset *asset = self.dataSource[index];
+    self.fileInfoViewController.photoAsset = asset;
+    
+    NSArray<PHAssetResource*> *assetResources = [PHAssetResource assetResourcesForAsset:asset];
+    NSString *fileName = @"File info";
+    if ([assetResources count] > 0) {
+        fileName = [assetResources objectAtIndex:0].originalFilename;
+    }
+    self.fileInfoViewController.title = fileName;
     self.fileInfoViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDonePress:)];
+    self.fileInfoViewController.navigationItem.rightBarButtonItem.tintColor = self.colors.black;
     
     self.fileInfoViewControllerWithNavigation = [[UINavigationController alloc ] initWithRootViewController:self.fileInfoViewController];
     self.fileInfoViewControllerWithNavigation.navigationBar.barTintColor = self.colors.yellow;
