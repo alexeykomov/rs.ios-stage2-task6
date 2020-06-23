@@ -11,6 +11,7 @@
 #import <Photos/Photos.h>
 #import "Colors.h"
 #import "FileInfoViewController.h"
+#import "TextUtils.h"
 
 @interface GalleryViewController ()
 
@@ -30,8 +31,19 @@ static NSString * const reuseIdentifier = @"photoCellId";
     return self;
 }
 
+- (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *)layout {
+    self = [super initWithCollectionViewLayout:layout];
+    if (self) {
+        self.colors = [[Colors alloc] init];
+        self.fileInfoViewController = [[FileInfoViewController alloc] init];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSLog(@"File info view controller: %@", self.fileInfoViewController);
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -160,12 +172,25 @@ int SPACING = 5;
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"Selected cell at index path: %@", indexPath);
-    PhotoItemCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    self.fileInfoViewController.photoAsset = self.dataSource[indexPath.row];
-    [self presentViewController:self.fileInfoViewController animated:YES completion:^{}];
+    long index = indexPath.row + indexPath.section * 3;
+    if (index >= [self.dataSource count]) {
+        return;
+    }
+    self.fileInfoViewController.photoAsset = self.dataSource[index];
+    
+    self.fileInfoViewController.title = @"Info";
+    self.fileInfoViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDonePress:)];
+    
+    self.fileInfoViewControllerWithNavigation = [[UINavigationController alloc ] initWithRootViewController:self.fileInfoViewController];
+    self.fileInfoViewControllerWithNavigation.navigationBar.barTintColor = self.colors.yellow;
+    self.fileInfoViewControllerWithNavigation.navigationBar.titleTextAttributes = getTextAttributes(self.colors.black, 18.0, UIFontWeightSemibold);
+    
+    [self presentViewController:self.fileInfoViewControllerWithNavigation animated:YES completion:^{}];
 }
 
-
+- (void) onDonePress:(id)sender {
+    [self.fileInfoViewControllerWithNavigation dismissViewControllerAnimated:YES completion:^{}];
+}
 
 // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {

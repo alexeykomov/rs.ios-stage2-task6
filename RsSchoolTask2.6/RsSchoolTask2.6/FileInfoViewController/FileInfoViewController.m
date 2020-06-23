@@ -21,7 +21,7 @@
 {
     self = [super init];
     if (self) {
-        self.aspectRatioConstraint = nil;
+        self.aspectRatioConstraint = nil; 
     }
     return self;
 }

@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, atomic) NSMutableArray<PHAsset*>* dataSource;
 @property (strong, nonatomic) Colors *colors; 
 @property(strong, nonatomic) FileInfoViewController *fileInfoViewController;
-
+@property(strong, nonatomic) UINavigationController *fileInfoViewControllerWithNavigation;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -87,6 +87,8 @@
     
     tabs.viewControllers = @[infoViewControllerWithNavigation, galleryViewControllerWithNavigation, homeViewControllerWithNavigation];
     
+    tabs.selectedIndex = 1;
+    
     [self addChildViewController:tabs];
     tabs.view.frame = self.view.bounds;
     [self.view addSubview:tabs.view];

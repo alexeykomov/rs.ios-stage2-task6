@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) UILabel *typeLabel;
 @property (strong, nonatomic) Colors *colors;
 @property (strong, nonatomic) UIScrollView *mainArea;
-@property (strong, nonatomic) NSLayoutConstraint *aspectRatioConstraint;
+@property (strong, nonatomic, nullable) NSLayoutConstraint *aspectRatioConstraint;
 @property (strong, nonatomic) ActionButton *shareButton;
 @property (strong, nonatomic) UIStackView *labels;
 

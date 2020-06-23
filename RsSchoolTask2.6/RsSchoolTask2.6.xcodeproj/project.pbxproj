@@ -165,6 +165,7 @@
 				5A630470249D69030045B5E7 /* StartScreenViewController */,
 				5AE2B818249F941300CDAEB7 /* GalleryViewController */,
 				5A765608249EA3660071D6AA /* InfoController */,
+				5AA04A0224A206D600CF3333 /* FileInfoViewController */,
 				5A63046D249D62E30045B5E7 /* Colors.m */,
 				5A522028249E215B00B06118 /* ActionButton.h */,
 				5A522029249E215B00B06118 /* ActionButton.m */,
@@ -219,10 +220,17 @@
 				5A63046B249D56E10045B5E7 /* InfoController.m */,
 				5A765605249EA3530071D6AA /* PhotoItemTableViewCell.h */,
 				5A765606249EA3530071D6AA /* PhotoItemTableViewCell.m */,
+			);
+			path = InfoController;
+			sourceTree = "<group>";
+		};
+		5AA04A0224A206D600CF3333 /* FileInfoViewController */ = {
+			isa = PBXGroup;
+			children = (
 				5A7628CC24A09EA40021D53A /* FileInfoViewController.h */,
 				5A7628CD24A09EA40021D53A /* FileInfoViewController.m */,
 			);
-			path = InfoController;
+			path = FileInfoViewController;
 			sourceTree = "<group>";
 		};
 		5AE2B818249F941300CDAEB7 /* GalleryViewController */ = {
