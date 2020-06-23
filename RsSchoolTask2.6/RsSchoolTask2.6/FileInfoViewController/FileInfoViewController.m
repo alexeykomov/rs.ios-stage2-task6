@@ -31,6 +31,7 @@
     NSLog(@"View did load.");
     // Do any additional setup after loading the view.
     
+    //TODO: Provide file name as title.
     self.title = @"File info";
     
     self.colors = [[Colors alloc] init];
@@ -59,6 +60,14 @@
     [self.mainArea addSubview:self.shareButton];
     
     [self setUpLabels];
+    
+    self.shareButton.translatesAutoresizingMaskIntoConstraints = false;
+    [NSLayoutConstraint activateConstraints:@[
+        [self.shareButton.centerXAnchor constraintEqualToAnchor:self.mainArea.centerXAnchor],
+        [self.shareButton.bottomAnchor constraintEqualToAnchor:self.mainArea.bottomAnchor constant:-30.0]
+    ]];
+    
+    [self.shareButton addTarget:self action:@selector(onSharePress:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -100,6 +109,7 @@
             }
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.picture.image = result;
+                self.imageToShare = result;
                 [self.picture setNeedsLayout];
                 [self.picture layoutIfNeeded];
                 NSLog(@"Picture frame after image: %@", NSStringFromCGSize(self.picture.frame.size));
@@ -110,12 +120,6 @@
 
 - (void) setUpLabels {
    
-    self.shareButton.translatesAutoresizingMaskIntoConstraints = false;
-    [NSLayoutConstraint activateConstraints:@[
-        [self.shareButton.centerXAnchor constraintEqualToAnchor:self.mainArea.centerXAnchor],
-        [self.shareButton.bottomAnchor constraintEqualToAnchor:self.mainArea.bottomAnchor constant:-30.0]
-    ]];
-    
     self.labels.backgroundColor = UIColor.magentaColor;
     self.labels.axis = UILayoutConstraintAxisVertical;
     self.labels.alignment = UIStackViewAlignmentLeading;
@@ -152,6 +156,16 @@
     [type appendAttributedString:[[NSAttributedString alloc] initWithString:@"Type: " attributes:getTextAttributes(self.colors.gray, 17.0, UIFontWeightRegular)]];
     [type appendAttributedString:[[NSAttributedString alloc] initWithString:[self getMediaTypeHint:asset.mediaType] attributes:getTextAttributes(self.colors.black, 17.0, UIFontWeightRegular)]];
     self.typeLabel.attributedText = type;
+}
+
+- (void) onSharePress:(id) sender {
+    if (!self.imageToShare) {
+        return;
+    }
+    
+    UIImage *exportedImage = self.imageToShare;
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[exportedImage] applicationActivities:nil];
+    [self presentViewController:activityViewController animated:YES completion:^{}];
 }
 
 - (NSString*) getMediaTypeHint:(PHAssetMediaType) mediaType {

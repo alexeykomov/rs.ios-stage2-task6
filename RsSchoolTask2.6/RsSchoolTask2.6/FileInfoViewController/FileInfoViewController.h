@@ -25,7 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic, nullable) NSLayoutConstraint *aspectRatioConstraint;
 @property (strong, nonatomic) ActionButton *shareButton;
 @property (strong, nonatomic) UIStackView *labels;
-
+//NOTE: We're storing image in memory for faster access when sharing.
+@property (strong, nonatomic) UIImage *imageToShare;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -177,7 +177,7 @@ int SPACING = 5;
         return;
     }
     self.fileInfoViewController.photoAsset = self.dataSource[index];
-    
+    //TODO: Provide file name as title.
     self.fileInfoViewController.title = @"Info";
     self.fileInfoViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDonePress:)];
     
