@@ -44,7 +44,7 @@
     
     [self.view addSubview:self.mainArea];
     self.view.backgroundColor = self.colors.white;
-    self.mainArea.backgroundColor = self.colors.blue;
+    self.mainArea.backgroundColor = self.colors.white;
     
     self.picture.contentMode = UIViewContentModeScaleAspectFit;
     
@@ -113,7 +113,7 @@
     self.shareButton.translatesAutoresizingMaskIntoConstraints = false;
     [NSLayoutConstraint activateConstraints:@[
         [self.shareButton.centerXAnchor constraintEqualToAnchor:self.mainArea.centerXAnchor],
-        [self.shareButton.bottomAnchor constraintEqualToAnchor:self.mainArea.bottomAnchor constant:-10.0]
+        [self.shareButton.bottomAnchor constraintEqualToAnchor:self.mainArea.bottomAnchor constant:-30.0]
     ]];
     
     self.labels.backgroundColor = UIColor.magentaColor;
@@ -128,30 +128,46 @@
     
 
     [NSLayoutConstraint activateConstraints:@[
-        [self.labels.topAnchor constraintEqualToAnchor:self.picture.bottomAnchor constant:10.0],
+        [self.labels.topAnchor constraintEqualToAnchor:self.picture.bottomAnchor constant:30.0],
         [self.labels.leadingAnchor constraintEqualToAnchor:self.mainArea.leadingAnchor constant:10.0],
         [self.labels.trailingAnchor constraintEqualToAnchor:self.mainArea.trailingAnchor constant:-10.0],
         //NOTE: The last element in scroll view must be pinned down to the scroll view bottom
         //https://stackoverflow.com/a/54577278/2358411
-        [self.labels.bottomAnchor constraintEqualToAnchor:self.shareButton.topAnchor constant:-10.0],
+        [self.labels.bottomAnchor constraintEqualToAnchor:self.shareButton.topAnchor constant:-30.0],
     ]];
     
     
     PHAsset *asset = self.photoAsset;
     NSMutableAttributedString *creationDate = [[NSMutableAttributedString alloc] init];
     [creationDate appendAttributedString:[[NSAttributedString alloc] initWithString:@"Creation date: " attributes:getTextAttributes(self.colors.gray, 17.0, UIFontWeightRegular)]];
-    [creationDate appendAttributedString:[[NSAttributedString alloc] initWithString:@"asset.creationDate" attributes:getTextAttributes(self.colors.black, 17.0, UIFontWeightRegular)]];
+    [creationDate appendAttributedString:[[NSAttributedString alloc] initWithString:[self getDateHint:asset.creationDate] attributes:getTextAttributes(self.colors.black, 17.0, UIFontWeightRegular)]];
     self.creationDateLabel.attributedText = creationDate;
     
     NSMutableAttributedString *modificationDate = [[NSMutableAttributedString alloc] init];
     [modificationDate appendAttributedString:[[NSAttributedString alloc] initWithString:@"Modification date: " attributes:getTextAttributes(self.colors.gray, 17.0, UIFontWeightRegular)]];
-    [modificationDate appendAttributedString:[[NSAttributedString alloc] initWithString:@"asset.modificationDate" attributes:getTextAttributes(self.colors.black, 17.0, UIFontWeightRegular)]];
+    [modificationDate appendAttributedString:[[NSAttributedString alloc] initWithString:[self getDateHint:asset.modificationDate] attributes:getTextAttributes(self.colors.black, 17.0, UIFontWeightRegular)]];
     self.modificationDateLabel.attributedText = modificationDate;
     
     NSMutableAttributedString *type = [[NSMutableAttributedString alloc] init];
     [type appendAttributedString:[[NSAttributedString alloc] initWithString:@"Type: " attributes:getTextAttributes(self.colors.gray, 17.0, UIFontWeightRegular)]];
-    [type appendAttributedString:[[NSAttributedString alloc] initWithString:@"asset.mediaType" attributes:getTextAttributes(self.colors.black, 17.0, UIFontWeightRegular)]];
+    [type appendAttributedString:[[NSAttributedString alloc] initWithString:[self getMediaTypeHint:asset.mediaType] attributes:getTextAttributes(self.colors.black, 17.0, UIFontWeightRegular)]];
     self.typeLabel.attributedText = type;
+}
+
+- (NSString*) getMediaTypeHint:(PHAssetMediaType) mediaType {
+    switch (mediaType) {
+        case PHAssetMediaTypeAudio: return @"Audio";
+        case PHAssetMediaTypeImage: return @"Image";
+        case PHAssetMediaTypeVideo: return @"Video";
+        default: return @"Other";
+    }
+}
+
+- (NSString*) getDateHint:(NSDate*)input {
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    fmt.dateFormat = @"ss:mm:HH dd:MM:YYYY";
+    NSString *hint = [fmt stringFromDate:input];
+    return hint;
 }
 
 /*
