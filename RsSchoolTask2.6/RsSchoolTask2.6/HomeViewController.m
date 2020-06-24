@@ -81,11 +81,11 @@
     [self setUpSeparators];
     [self setUpShapesContainer];
     [self setUpButtons];
+    
+    [self.shapesContainer startAnimation];
 }
 
 - (void) viewDidAppear:(BOOL) animated {
-    [self.shapesContainer startAnimation];
-    
 }
 
 - (void) setUpSeparators {
@@ -168,7 +168,7 @@
     self.buttons.axis = UILayoutConstraintAxisVertical;
     self.buttons.alignment = UIStackViewAlignmentLeading;
     self.buttons.distribution = UIStackViewDistributionEqualCentering;
-    self.buttons.spacing = 10.0;
+    self.buttons.spacing = 20.0;
     
     self.buttons.translatesAutoresizingMaskIntoConstraints = false;
     self.separatorLower.translatesAutoresizingMaskIntoConstraints = false;
