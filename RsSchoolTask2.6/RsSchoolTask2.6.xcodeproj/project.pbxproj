@@ -26,6 +26,7 @@
 		5A630473249D69460045B5E7 /* Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A630472249D69460045B5E7 /* Circle.m */; };
 		5A630476249D6F1A0045B5E7 /* Triangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A630475249D6F1A0045B5E7 /* Triangle.m */; };
 		5A630479249D6F430045B5E7 /* ColoredView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A630478249D6F430045B5E7 /* ColoredView.m */; };
+		5A6B860A24A403B500C4FA1D /* RoutingUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6B860924A403B500C4FA1D /* RoutingUtils.m */; };
 		5A7628CE24A09EA40021D53A /* FileInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7628CD24A09EA40021D53A /* FileInfoViewController.m */; };
 		5A765604249E59A20071D6AA /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A765603249E59A20071D6AA /* HomeViewController.m */; };
 		5A765607249EA3530071D6AA /* PhotoItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A765606249EA3530071D6AA /* PhotoItemTableViewCell.m */; };
@@ -91,6 +92,8 @@
 		5A630475249D6F1A0045B5E7 /* Triangle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Triangle.m; sourceTree = "<group>"; };
 		5A630477249D6F430045B5E7 /* ColoredView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColoredView.h; sourceTree = "<group>"; };
 		5A630478249D6F430045B5E7 /* ColoredView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColoredView.m; sourceTree = "<group>"; };
+		5A6B860924A403B500C4FA1D /* RoutingUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoutingUtils.m; sourceTree = "<group>"; };
+		5A6B860B24A4059D00C4FA1D /* RoutingUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoutingUtils.h; sourceTree = "<group>"; };
 		5A7628CC24A09EA40021D53A /* FileInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileInfoViewController.h; sourceTree = "<group>"; };
 		5A7628CD24A09EA40021D53A /* FileInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileInfoViewController.m; sourceTree = "<group>"; };
 		5A765602249E59A20071D6AA /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -176,6 +179,8 @@
 				5AA04A0224A206D600CF3333 /* FileInfoViewController */,
 				5A63046D249D62E30045B5E7 /* Colors.m */,
 				5A522028249E215B00B06118 /* ActionButton.h */,
+				5A6B860924A403B500C4FA1D /* RoutingUtils.m */,
+				5A6B860B24A4059D00C4FA1D /* RoutingUtils.h */,
 				5A522029249E215B00B06118 /* ActionButton.m */,
 				5A63046F249D64E10045B5E7 /* Colors.h */,
 				5AE2B811249F7F6D00CDAEB7 /* TextUtils.m */,
@@ -392,6 +397,7 @@
 				5A63042F249C0D280045B5E7 /* AppDelegate.m in Sources */,
 				5AC6B05C24A3E3F8000BAFB7 /* HomeStaticViewController.m in Sources */,
 				5A630440249C0D2A0045B5E7 /* main.m in Sources */,
+				5A6B860A24A403B500C4FA1D /* RoutingUtils.m in Sources */,
 				5A630479249D6F430045B5E7 /* ColoredView.m in Sources */,
 				5AE2B816249F903700CDAEB7 /* PhotoItemCollectionViewCell.m in Sources */,
 				5A52202A249E215B00B06118 /* ActionButton.m in Sources */,

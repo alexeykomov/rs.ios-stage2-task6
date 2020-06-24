@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) UIViewController *current;
 
 - (void) showMainViewController;
+- (void) showStartScreenViewController;
 
 @end
 

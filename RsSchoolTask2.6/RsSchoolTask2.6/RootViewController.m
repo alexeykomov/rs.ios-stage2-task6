@@ -46,6 +46,20 @@
     
 }
 
+- (void) showStartScreenViewController {
+    StartScreenViewController *startViewController = [[StartScreenViewController alloc] initWithNibName:@"StartScreen" bundle:nil];
+    [self addChildViewController:startViewController];
+    startViewController.view.frame = self.view.bounds;
+    [self.view addSubview:startViewController.view];
+    [startViewController didMoveToParentViewController:self];
+    
+    [self.current willMoveToParentViewController:nil];
+    [self.current.view removeFromSuperview];
+    [self.current removeFromParentViewController];
+    
+    self.current = startViewController;
+}
+
 - (void) showMainViewController {
     Colors *colors = [[Colors alloc] init];
     
@@ -90,7 +104,7 @@
     
     tabs.viewControllers = @[infoViewControllerWithNavigation, galleryViewControllerWithNavigation, homeViewControllerWithNavigation];
     
-    tabs.selectedIndex = 2;
+    tabs.selectedIndex = 1;
     
     [self addChildViewController:tabs];
     tabs.view.frame = self.view.bounds;

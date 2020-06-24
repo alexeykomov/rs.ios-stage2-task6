@@ -16,6 +16,7 @@
 #import "ActionButton.h"
 #import "RootViewController.h"
 #import "ShapesContainer.h"
+#import "RoutingUtils.h"
 
 @interface StartScreenViewController ()
 @property (weak, nonatomic) IBOutlet ActionButton *buttonStart;
@@ -84,27 +85,7 @@
 }
 
 - (void) onButtonStartPress:(id) sender {
-    if (@available(iOS 13.0, *)) {
-        [[[UIApplication sharedApplication] connectedScenes] enumerateObjectsUsingBlock:^(UIScene * _Nonnull obj, BOOL * _Nonnull stop) {
-            NSLog(@"Scene: %@", obj);
-            UIWindowScene *windowScene = (UIWindowScene*) obj;
-            
-            NSLog(@"Windows: %@", windowScene.windows);
-            [windowScene.windows enumerateObjectsUsingBlock:^(UIWindow * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                NSLog(@"Window root view controller: %@", obj.rootViewController);
-                if ([obj.rootViewController respondsToSelector:@selector(showMainViewController)]) {
-                    RootViewController *rootViewController = (RootViewController*) obj.rootViewController;
-                    [rootViewController showMainViewController];
-                }
-                
-            }];
-        }];
-        
-    }
-    else {
-        RootViewController *rootViewController = (RootViewController*) [[UIApplication sharedApplication] delegate].window.rootViewController;
-        [rootViewController showMainViewController];
-    }
+    showRootViewController(0);
 }
 
 - (void) viewDidAppear:(BOOL) animated {

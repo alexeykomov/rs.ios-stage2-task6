@@ -11,6 +11,7 @@
 #import "TextUtils.h"
 #import "ShapesContainer.h"
 #import "ActionButton.h"
+#import "RoutingUtils.h"
 
 @interface HomeViewController ()
 
@@ -66,8 +67,8 @@
     [self.startButton setTitle:@"Go to start!" forState:UIControlStateNormal];
     
     
-    [self.cvButton addTarget:self action:@selector(onSharePress:) forControlEvents:UIControlEventTouchUpInside];
-    [self.startButton addTarget:self action:@selector(onSharePress:) forControlEvents:UIControlEventTouchUpInside];
+    [self.cvButton addTarget:self action:@selector(onCVPress:) forControlEvents:UIControlEventTouchUpInside];
+    [self.startButton addTarget:self action:@selector(onStartPress:) forControlEvents:UIControlEventTouchUpInside];
 
     self.mainArea.translatesAutoresizingMaskIntoConstraints = false;
     [NSLayoutConstraint activateConstraints:@[
@@ -86,6 +87,14 @@
 }
 
 - (void) viewDidAppear:(BOOL) animated {
+}
+
+- (void) onCVPress:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://alexeykomov.me/resume/resume"] options:@{} completionHandler:^(BOOL success){}];
+}
+
+- (void) onStartPress:(id)sender {
+    showRootViewController(1);
 }
 
 - (void) setUpSeparators {
@@ -144,18 +153,24 @@
     self.phoneTypeLabel.translatesAutoresizingMaskIntoConstraints = false;
     self.operationSystemLabel.translatesAutoresizingMaskIntoConstraints = false;
     
-//    [NSLayoutConstraint activateConstraints:@[
-//        [self.labels.widthAnchor constraintEqualToConstant:100],
-//        [self.labels.heightAnchor constraintEqualToConstant:100],
-//    ]];
+    //    [NSLayoutConstraint activateConstraints:@[
+    //        [self.labels.widthAnchor constraintEqualToConstant:100],
+    //        [self.labels.heightAnchor constraintEqualToConstant:100],
+    //    ]];
     
-   NSAttributedString *phoneName = [[NSAttributedString alloc] initWithString:@"My iPhone" attributes:getTextAttributes(self.colors.black, 17.0, UIFontWeightRegular)];
+    UIDevice *device = [UIDevice currentDevice];
+    
+    NSAttributedString *phoneName = [[NSAttributedString alloc] initWithString:device.name attributes:getTextAttributes(self.colors.black, 17.0, UIFontWeightRegular)];
     self.phoneNameLabel.attributedText = phoneName;
     
-    NSAttributedString *phoneType = [[NSAttributedString alloc] initWithString:@"iPhone" attributes:getTextAttributes(self.colors.black, 17.0, UIFontWeightRegular)];
+    NSAttributedString *phoneType = [[NSAttributedString alloc] initWithString:device.localizedModel attributes:getTextAttributes(self.colors.black, 17.0, UIFontWeightRegular)];
     self.phoneTypeLabel.attributedText = phoneType;
     
-    NSAttributedString *operationSystem = [[NSAttributedString alloc] initWithString:@"iOS 13.5" attributes:getTextAttributes(self.colors.black, 17.0, UIFontWeightRegular)];
+    NSMutableString *systemInfo = [[NSMutableString alloc] initWithString:device.systemName];
+    [systemInfo appendString:@" "];
+    [systemInfo appendString:device.systemVersion];
+    
+    NSAttributedString *operationSystem = [[NSAttributedString alloc] initWithString:systemInfo attributes:getTextAttributes(self.colors.black, 17.0, UIFontWeightRegular)];
     
     self.operationSystemLabel.attributedText = operationSystem;
 }
@@ -177,7 +192,6 @@
         [self.buttons.bottomAnchor constraintEqualToAnchor:self.mainArea.bottomAnchor constant:-30.0],
     ]];
 }
-
 
 
 /*
