@@ -104,10 +104,8 @@
 - (void) setUpShapesContainer {
     self.shapesContainer.translatesAutoresizingMaskIntoConstraints = false;
     [NSLayoutConstraint activateConstraints:@[
-        [self.shapesContainer.leadingAnchor constraintEqualToAnchor:self.mainArea.leadingAnchor constant:50.0],
-        [self.shapesContainer.widthAnchor constraintEqualToAnchor:self.mainArea.widthAnchor constant:-100.0],
-        [self.shapesContainer.heightAnchor constraintEqualToConstant:70.0],
         [self.shapesContainer.topAnchor constraintEqualToAnchor:self.separatorUpper.bottomAnchor constant:60],
+        [self.shapesContainer.centerXAnchor constraintEqualToAnchor:self.mainArea.centerXAnchor],
         [self.shapesContainer.bottomAnchor constraintEqualToAnchor:self.separatorLower.topAnchor constant:-60],
     ]];
 }

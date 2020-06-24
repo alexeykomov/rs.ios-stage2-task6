@@ -12,7 +12,10 @@
 
 #endif /* StartScreenViewController_h */
 #import <UIKit/UIKit.h>
+#import "ShapesContainer.h"
 
 @interface StartScreenViewController : UIViewController
+
+@property (strong, nonatomic) ShapesContainer *shapesContainer;
 
 @end

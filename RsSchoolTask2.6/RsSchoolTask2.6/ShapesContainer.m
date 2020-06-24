@@ -47,6 +47,7 @@
     self.shapesContainer = [[UIStackView alloc] init];
     [self addSubview:self.shapesContainer];
     self.shapesContainer.translatesAutoresizingMaskIntoConstraints = false;
+    self.translatesAutoresizingMaskIntoConstraints = false;
     
     self.shapesContainer.backgroundColor = UIColor.redColor;
     self.shapesContainer.axis = UILayoutConstraintAxisHorizontal;
@@ -59,6 +60,9 @@
     [self.shapesContainer addArrangedSubview:self.triangle];
     
     [self.shapesContainer.heightAnchor constraintEqualToConstant:70.0].active = true;
+    [self.shapesContainer.widthAnchor constraintEqualToConstant:280.0].active = true;
+    [self.heightAnchor constraintEqualToConstant:70.0].active = true;
+    [self.widthAnchor constraintEqualToConstant:280.0].active = true;
 }
 
 - (void) startAnimation {

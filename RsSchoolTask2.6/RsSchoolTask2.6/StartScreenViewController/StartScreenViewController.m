@@ -15,11 +15,11 @@
 #import "Square.h"
 #import "ActionButton.h"
 #import "RootViewController.h"
+#import "ShapesContainer.h"
 
 @interface StartScreenViewController ()
 @property (weak, nonatomic) IBOutlet ActionButton *buttonStart;
 @property (weak, nonatomic) IBOutlet UILabel *labelGreetings;
-@property (strong, nonatomic) UIStackView *shapesContainer;
 
 @end
 
@@ -51,31 +51,10 @@
 }
 
 - (void) setUpShapesContainer:(Colors*)colors {
-    Circle *circle = [[Circle alloc] initWithColor:colors.red];
-    [circle.widthAnchor constraintEqualToConstant:70.0].active = true;
-    [circle.heightAnchor constraintEqualToConstant:70.0].active = true;
-    Square *square = [[Square alloc] initWithColor:colors.blue];
-    [square.widthAnchor constraintEqualToConstant:70.0].active = true;
-    [square.heightAnchor constraintEqualToConstant:70.0].active = true;
-    Triangle *triangle = [[Triangle alloc] initWithColor:colors.green];
-    [triangle.widthAnchor constraintEqualToConstant:70.0].active = true;
-    [triangle.heightAnchor constraintEqualToConstant:70.0].active = true;
-    
-    self.shapesContainer = [[UIStackView alloc] init];
+    self.shapesContainer = [[ShapesContainer alloc] init];
     [self.view addSubview:self.shapesContainer];
     self.shapesContainer.translatesAutoresizingMaskIntoConstraints = false;
     
-    self.shapesContainer.backgroundColor = UIColor.redColor;
-    self.shapesContainer.axis = UILayoutConstraintAxisHorizontal;
-    self.shapesContainer.alignment = UIStackViewAlignmentCenter;
-    self.shapesContainer.distribution = UIStackViewDistributionEqualCentering;
-    self.shapesContainer.spacing = 35.0;
-    
-    [self.shapesContainer addArrangedSubview:circle];
-    [self.shapesContainer addArrangedSubview:square];
-    [self.shapesContainer addArrangedSubview:triangle];
-    
-    [self.shapesContainer.heightAnchor constraintEqualToConstant:70.0].active = true;
     NSLayoutConstraint *desiredDistanceFromLabelGreetings = [[self.shapesContainer topAnchor] constraintEqualToAnchor:[self.labelGreetings bottomAnchor] constant:115];
     desiredDistanceFromLabelGreetings.priority = 900.0;
     desiredDistanceFromLabelGreetings.active = true;
@@ -83,9 +62,7 @@
     [[self.shapesContainer bottomAnchor] constraintLessThanOrEqualToAnchor:[self.buttonStart topAnchor] constant:-70].active = true;
     [[self.shapesContainer centerXAnchor] constraintEqualToAnchor:[self.view centerXAnchor]].active = true;
     
-    [triangle startAnimation];
-    [circle startAnimation];
-    [square startAnimation];
+    [self.shapesContainer startAnimation];
 }
 
 - (void) setUpButtonStart:(Colors*)colors {
