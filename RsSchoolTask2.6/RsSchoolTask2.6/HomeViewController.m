@@ -31,8 +31,8 @@
     self.phoneNameLabel = [[UILabel alloc] init];
     self.phoneTypeLabel = [[UILabel alloc] init];
     self.operationSystemLabel = [[UILabel alloc] init];
-    self.cvButton = [[UIButton alloc] init];
-    self.startButton = [[UIButton alloc] init];
+    self.cvButton = [[ActionButton alloc] init];
+    self.startButton = [[ActionButton alloc] init];
     self.upperElements = [[UIStackView alloc] init];
     self.logoPicture = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"apple"]];
     self.separatorLower = [[UIView alloc] init];
@@ -106,8 +106,9 @@
     [NSLayoutConstraint activateConstraints:@[
         [self.shapesContainer.leadingAnchor constraintEqualToAnchor:self.mainArea.leadingAnchor constant:50.0],
         [self.shapesContainer.widthAnchor constraintEqualToAnchor:self.mainArea.widthAnchor constant:-100.0],
-        [self.shapesContainer.topAnchor constraintEqualToAnchor:self.separatorUpper.bottomAnchor constant:100],
-        [self.shapesContainer.bottomAnchor constraintEqualToAnchor:self.separatorLower.topAnchor constant:-100],
+        [self.shapesContainer.heightAnchor constraintEqualToConstant:70.0],
+        [self.shapesContainer.topAnchor constraintEqualToAnchor:self.separatorUpper.bottomAnchor constant:60],
+        [self.shapesContainer.bottomAnchor constraintEqualToAnchor:self.separatorLower.topAnchor constant:-60],
     ]];
 }
 
@@ -173,7 +174,7 @@
     self.separatorLower.translatesAutoresizingMaskIntoConstraints = false;
     
     [NSLayoutConstraint activateConstraints:@[
-        [self.buttons.topAnchor constraintEqualToAnchor:self.separatorLower.topAnchor constant:60.0],
+        [self.buttons.topAnchor constraintEqualToAnchor:self.separatorLower.bottomAnchor constant:60.0],
         [self.buttons.centerXAnchor constraintEqualToAnchor:self.mainArea.centerXAnchor],
         [self.buttons.bottomAnchor constraintEqualToAnchor:self.mainArea.bottomAnchor constant:-30.0],
     ]];
