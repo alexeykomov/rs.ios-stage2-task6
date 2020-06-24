@@ -66,6 +66,12 @@
     [self.cvButton setTitle:@"Open Git CV" forState:UIControlStateNormal];
     [self.startButton setTitle:@"Go to start!" forState:UIControlStateNormal];
     
+    [self.cvButton setTitleColor:self.colors.black forState:UIControlStateNormal];
+    self.cvButton.backgroundColor = self.colors.yellow;
+    
+    [self.startButton setTitleColor:self.colors.white forState:UIControlStateNormal];
+    self.startButton.backgroundColor = self.colors.red;
+    
     
     [self.cvButton addTarget:self action:@selector(onCVPress:) forControlEvents:UIControlEventTouchUpInside];
     [self.startButton addTarget:self action:@selector(onStartPress:) forControlEvents:UIControlEventTouchUpInside];
