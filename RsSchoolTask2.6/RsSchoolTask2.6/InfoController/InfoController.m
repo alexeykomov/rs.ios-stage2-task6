@@ -151,9 +151,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.fileInfoViewController.photoAsset = self.dataSource[indexPath.row];
-    
-
-    
     [self.navigationController pushViewController:self.fileInfoViewController animated:YES];
 }
 
