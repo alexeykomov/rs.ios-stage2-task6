@@ -14,9 +14,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ShapesContainer : UIView
+@interface ShapesContainer : UIStackView
 
-@property (strong, nonatomic) UIStackView *shapesContainer;
 @property (strong, nonatomic) Triangle *triangle;
 @property (strong, nonatomic) Square *square;
 @property (strong, nonatomic) Circle *circle; 

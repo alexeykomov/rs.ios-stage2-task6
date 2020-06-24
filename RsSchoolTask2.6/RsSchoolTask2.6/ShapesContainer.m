@@ -44,23 +44,22 @@
     [self.triangle.widthAnchor constraintEqualToConstant:70.0].active = true;
     [self.triangle.heightAnchor constraintEqualToConstant:70.0].active = true;
     
-    self.shapesContainer = [[UIStackView alloc] init];
-    [self addSubview:self.shapesContainer];
-    self.shapesContainer.translatesAutoresizingMaskIntoConstraints = false;
+    
     self.translatesAutoresizingMaskIntoConstraints = false;
     
-    self.shapesContainer.backgroundColor = UIColor.redColor;
-    self.shapesContainer.axis = UILayoutConstraintAxisHorizontal;
-    self.shapesContainer.alignment = UIStackViewAlignmentCenter;
-    self.shapesContainer.distribution = UIStackViewDistributionEqualCentering;
-    self.shapesContainer.spacing = 35.0;
     
-    [self.shapesContainer addArrangedSubview:self.circle];
-    [self.shapesContainer addArrangedSubview:self.square];
-    [self.shapesContainer addArrangedSubview:self.triangle];
+    self.backgroundColor = UIColor.redColor;
+    self.axis = UILayoutConstraintAxisHorizontal;
+    self.alignment = UIStackViewAlignmentCenter;
+    self.distribution = UIStackViewDistributionEqualCentering;
+    self.spacing = 35.0;
     
-    [self.shapesContainer.heightAnchor constraintEqualToConstant:70.0].active = true;
-    [self.shapesContainer.widthAnchor constraintEqualToConstant:280.0].active = true;
+    [self addArrangedSubview:self.circle];
+    [self addArrangedSubview:self.square];
+    [self addArrangedSubview:self.triangle];
+    
+    [self.heightAnchor constraintEqualToConstant:70.0].active = true;
+    [self.widthAnchor constraintEqualToConstant:280.0].active = true;
     [self.heightAnchor constraintEqualToConstant:70.0].active = true;
     [self.widthAnchor constraintEqualToConstant:280.0].active = true;
 }
