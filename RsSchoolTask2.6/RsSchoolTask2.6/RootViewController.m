@@ -11,6 +11,7 @@
 #import "GalleryViewController.h"
 #import "InfoController.h"
 #import "HomeViewController.h"
+#import "HomeStaticViewController.h"
 #import "Colors.h"
 #import "TextUtils.h"
 
@@ -75,7 +76,9 @@
     galleryViewControllerWithNavigation.navigationBar.titleTextAttributes =
     getTextAttributes(colors.black, 18.0, UIFontWeightSemibold);
     
+    //HomeStaticViewController *homeViewController = [[HomeStaticViewController alloc] initWithNibName:@"HomeScreen" bundle:nil];
     HomeViewController *homeViewController = [[HomeViewController alloc] init];
+    
     homeViewController.title = @"RSSSchool Task 6";
     UINavigationController *homeViewControllerWithNavigation = [[UINavigationController alloc ] initWithRootViewController:homeViewController];
     UITabBarItem *homeTabBarItem = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"home_unselected"] tag:2];
@@ -87,7 +90,7 @@
     
     tabs.viewControllers = @[infoViewControllerWithNavigation, galleryViewControllerWithNavigation, homeViewControllerWithNavigation];
     
-    tabs.selectedIndex = 1;
+    tabs.selectedIndex = 2;
     
     [self addChildViewController:tabs];
     tabs.view.frame = self.view.bounds;
