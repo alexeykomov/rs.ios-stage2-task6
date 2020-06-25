@@ -176,6 +176,9 @@
     
     UIImage *exportedImage = self.imageToShare;
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[exportedImage] applicationActivities:nil];
+    if ([activityViewController respondsToSelector:@selector(popoverPresentationController)]) {
+        activityViewController.popoverPresentationController.sourceView = self.shareButton;
+    }
     [self presentViewController:activityViewController animated:YES completion:^{}];
 }
 
