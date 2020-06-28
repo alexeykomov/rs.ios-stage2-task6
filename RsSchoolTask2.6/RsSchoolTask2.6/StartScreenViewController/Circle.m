@@ -30,34 +30,17 @@
 }
 
 - (void)startAnimation {
+    CAKeyframeAnimation *oscillation = [CAKeyframeAnimation animation];
+    oscillation.keyPath = @"transform.scale";
+    oscillation.values = @[@1.0, @0.9, @1.0, @1.1, @1.0];
+    oscillation.keyTimes = @[@0, @(1.0/4.0), @(2.0/4.0), @(3.0/4.0), @1];
+    oscillation.duration = 1;
     
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-                        options: UIViewAnimationOptionCurveLinear
-     
-                     animations:^{
-        float cx = 1;
-        float cy = 1;
-        float delta = 0.1;
-        switch (self.directionOfGrowth) {
-            case 0: cx = 0.9; cy = 0.9; break;
-            case 1: cx = 1.1 / 0.9; cy = 1.1 / 0.9; break;
-            case 2: cx = 0.9 / 1.1; cy = 0.9 / 1.1; break;
-        }
-        CGAffineTransform transform = CGAffineTransformScale(self.transform, cx, cy);
-        
-        self.transform = transform;
-     
-    }
-                     completion:^(BOOL finished) {
-        if (self.directionOfGrowth == 0 || self.directionOfGrowth == 2) {
-            self.directionOfGrowth = 1;
-        } else {
-            self.directionOfGrowth = 2;
-        };
-        [self startAnimation];
-        
-    }];
+    oscillation.additive = NO;
+    
+    oscillation.repeatCount = HUGE_VALF;
+    
+    [self.layer addAnimation:oscillation forKey:@"oscillationAnimation"];
 }
 
 
