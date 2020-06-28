@@ -33,21 +33,12 @@
 }
 
 - (void)startAnimation {
-    
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-                        options: UIViewAnimationOptionCurveLinear
-     
-                     animations:^{
-        CGAffineTransform transform = CGAffineTransformRotate(self.transform, M_PI_2);
-        
-        self.transform = transform;
-     
-    }
-                     completion:^(BOOL finished) {
-        [self startAnimation];
-        
-    }];
+    CABasicAnimation *rotation = [CABasicAnimation animation];
+    rotation.toValue = [[NSNumber alloc] initWithFloat:M_PI * 2];
+    rotation.keyPath = @"transform.rotation.z";
+    rotation.duration = 2;
+    rotation.repeatCount = HUGE_VALF;
+    [self.layer addAnimation:rotation forKey:@"rotationAnimation"];
 }
 
 @end

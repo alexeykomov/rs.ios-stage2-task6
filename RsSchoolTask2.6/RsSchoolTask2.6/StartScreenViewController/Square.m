@@ -27,32 +27,19 @@
     CGContextFillRect(context, rect);
 }
 
-- (void)startAnimation {
+- (void) startAnimation {
     
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-                        options: UIViewAnimationOptionCurveLinear
-     
-                     animations:^{
-        float ty= 1;
-        switch (self.directionOfMovement) {
-            case 0: ty = -7; break;
-            case 1: ty = 14; break;
-            case 2: ty = -14; break;
-        }
-        CGAffineTransform transform = CGAffineTransformTranslate(self.transform, 0, ty);
-        self.transform = transform;
-     
-    }
-                     completion:^(BOOL finished) {
-        if (self.directionOfMovement == 0 || self.directionOfMovement == 2) {
-            self.directionOfMovement = 1;
-        } else {
-            self.directionOfMovement = 2;
-        };
-        [self startAnimation];
-        
-    }];
+    CAKeyframeAnimation *floating = [CAKeyframeAnimation animation];
+    floating.keyPath = @"position.y";
+    floating.values = @[@0, @-7, @+7, @+7, @-7, @0];
+    floating.keyTimes = @[@0, @0.5, @0.5, @0.5, @0.5, @1];
+    floating.duration = 1;
+    
+    floating.additive = YES;
+    
+    floating.repeatCount = HUGE_VALF;
+    
+    [self.layer addAnimation:floating forKey:@"floatingAnimation"];
 }
 
 @end
